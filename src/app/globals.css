@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-bvp, "Be Vietnam Pro"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -136,7 +136,13 @@
 html, body {
   height: 100%;
   overscroll-behavior: none;
-  font-family: var(--font-bvp), "Be Vietnam Pro", sans-serif;
+  /* var() luôn có fallback bên trong để không bao giờ rơi về Times New Roman */
+  font-family: var(--font-bvp, "Be Vietnam Pro"), "Be Vietnam Pro", ui-sans-serif,
+    system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
 }
 
 .deck-scroll {
@@ -249,17 +255,6 @@ html, body {
 .cursor-ring.grow { width: 64px; height: 64px; border-color: rgba(46, 196, 182, 0.35); }
 @media (pointer: fine) {
   .cursor-dot, .cursor-ring { display: block; }
-}
-
-/* ---------- marquee ---------- */
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 22s linear infinite;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
 }
 
 /* ---------- misc ---------- */

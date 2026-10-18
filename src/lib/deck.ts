@@ -90,5 +90,3 @@ export const CONCLUSIONS = [
   { icon: "route", t: "Tour 3N2Đ: lịch trình hợp lý, chi phí chỉ ~2,5 triệu đồng/người", hot: true },
   { icon: "heart", t: "Bài học: lập kế hoạch chi tiết và làm việc nhóm hiệu quả", hot: false },
 ];
-
-export const MARQUEE = "NHA TRANG · 3 NGÀY 2 ĐÊM · BIỂN XANH · CÁT TRẮNG · NẮNG VÀNG · ";

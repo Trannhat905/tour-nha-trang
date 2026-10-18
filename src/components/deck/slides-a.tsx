@@ -10,7 +10,7 @@ import {
   Flag,
   type LucideIcon,
 } from "lucide-react";
-import { IMG, MEMBERS, AGENDA, FACTS, REASONS, GOALS, STATS, MARQUEE } from "@/lib/deck";
+import { IMG, MEMBERS, AGENDA, FACTS, REASONS, GOALS, STATS } from "@/lib/deck";
 
 /* ---------------- shared bits ---------------- */
 
@@ -70,7 +70,7 @@ export function SlideCover() {
   return (
     <section className="deck-slide bg-[#f6fbfd]" data-idx={0}>
       <div className="mx-auto grid h-full max-w-[1500px] grid-cols-1 lg:grid-cols-[54%_46%]">
-        <div className="relative z-10 flex flex-col justify-center px-[7vw] pb-28 pt-16 lg:pb-20">
+        <div className="relative z-10 flex flex-col justify-center px-[7vw] pb-24 pt-16 lg:pb-24">
           <Chip className="rv w-fit" tone="navy">
             <span className="inline-block h-2 w-2 rounded-full bg-[#2ec4b6]" />
             Bài thuyết trình nhóm
@@ -107,21 +107,8 @@ export function SlideCover() {
           className="rv-zoom hidden h-full w-full lg:block"
         />
       </div>
-      {/* marquee */}
-      <div className="absolute bottom-0 left-0 z-20 w-full overflow-hidden border-t border-white/10 bg-[#0a3d62] py-3">
-        <div className="marquee-track">
-          {[0, 1].map((k) => (
-            <span
-              key={k}
-              className="whitespace-nowrap pr-6 text-[clamp(0.7rem,1vw,0.95rem)] font-bold uppercase tracking-[0.3em] text-white/85"
-            >
-              {MARQUEE.repeat(3)}
-            </span>
-          ))}
-        </div>
-      </div>
       {/* scroll hint */}
-      <div className="fs-hint absolute bottom-16 right-[7vw] z-20 hidden items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#56718a] lg:flex">
+      <div className="fs-hint absolute bottom-10 right-[7vw] z-20 hidden items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-[#56718a] lg:flex">
         Cuộn để khám phá
         <span className="inline-block h-8 w-5 rounded-full border-2 border-[#56718a]/50 p-0.5">
           <span className="block h-2 w-1 animate-bounce rounded-full bg-[#2ec4b6]" />
@@ -294,7 +281,7 @@ export function SlideIntro() {
                   <span className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2ec4b6]/15 text-[#149d92]">
                     <Ic className="h-5 w-5" strokeWidth={2.2} />
                   </span>
-                  <p className="text-[clamp(0.88rem,1.45vw,1.3rem)] font-semibold leading-snug text-[#0a3d62]">
+                  <p className="text-[clamp(0.92rem,1.5vw,1.35rem)] font-semibold leading-snug text-[#0a3d62]">
                     {f.t}
                   </p>
                 </li>
@@ -342,7 +329,7 @@ export function SlideWhy() {
               {REASONS.map((r) => (
                 <li key={r} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#149d92]" strokeWidth={2.2} />
-                  <p className="text-[clamp(0.85rem,1.35vw,1.25rem)] font-semibold leading-snug text-[#0a3d62]">
+                  <p className="text-[clamp(0.92rem,1.5vw,1.38rem)] font-semibold leading-snug text-[#0a3d62]">
                     {r}
                   </p>
                 </li>
@@ -364,7 +351,7 @@ export function SlideWhy() {
               {GOALS.map((g) => (
                 <li key={g} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[#2ec4b6]" strokeWidth={2.2} />
-                  <p className="text-[clamp(0.85rem,1.35vw,1.25rem)] font-semibold leading-snug text-white">
+                  <p className="text-[clamp(0.92rem,1.5vw,1.38rem)] font-semibold leading-snug text-white">
                     {g}
                   </p>
                 </li>

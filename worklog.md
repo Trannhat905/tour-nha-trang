@@ -95,3 +95,18 @@ Work Log:
 
 Stage Summary:
 - Web Awwwards 15 section full-screen snap hoàn thành, preview: https://preview-873d2fdf-0644-49b8-95c2-cdfd42be99b7.space-z.ai/
+
+---
+Task ID: 6
+Agent: main-agent
+Task: Sửa font chữ & bỏ dòng chữ chạy (marquee) ở trang đầu theo feedback người dùng
+
+Work Log:
+- Chẩn đoán ảnh 1 (chữ serif trong card MỤC TIÊU): biến --font-bvp chỉ khai báo trên <body> nên rule "html, body { font-family: var(--font-bvp)... }" bị invalid-at-computed-value trên <html> → computed font của html rơi về "Times New Roman"; đồng thời --font-sans của Tailwind @theme trỏ vào --font-geist-sans không tồn tại
+- Fix font: layout.tsx gắn className={bvp.variable} lên <html>; globals.css đổi font-stack có fallback bên trong var() (var(--font-bvp, "Be Vietnam Pro"), "Be Vietnam Pro", ui-sans-serif, system-ui...) + sửa --font-sans/--font-mono trong @theme inline + thêm button/input inherit
+- Bỏ marquee: xoá khối marquee khỏi SlideCover (slides-a.tsx), xoá export MARQUEE (deck.ts), xoá CSS .marquee-track/@keyframes marquee (globals.css); chỉnh padding cover pb-28→pb-24, scroll hint bottom-16→bottom-10
+- Tăng cỡ chữ danh sách slide 5 & 6: facts clamp→(0.92rem,1.5vw,1.35rem), reasons/goals clamp→(0.92rem,1.5vw,1.38rem)
+- Verify agent-browser: html/body computed = "Be Vietnam Pro", document.fonts.check = true, .marquee-track = 0; screenshot desktop 1440x900 (cover + slide 6) & mobile 390x844 OK, không tràn; lint sạch, console không lỗi
+
+Stage Summary:
+- Web đã sửa xong: không còn dải chữ chạy ở trang bìa, font toàn site khóa Be Vietnam Pro (không thể rơi về Times New Roman), chữ danh sách to rõ hơn
