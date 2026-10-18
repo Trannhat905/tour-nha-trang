@@ -1,0 +1,113 @@
+{
+  "design": {
+    "title": "Tour du lịch Nha Trang",
+    "style_name": "Tươi sáng biển Việt — Xanh dương + Mint, tối giản ít chữ, font to",
+    "palette": {
+      "background": "#FFFFFF",
+      "primary": "#0A3D62",
+      "accent": "#2EC4B6"
+    },
+    "typography": {
+      "heading": "Be Vietnam Pro (800/900)",
+      "body": "Be Vietnam Pro (400/500/600)",
+      "numeric": "Be Vietnam Pro (700/800)"
+    },
+    "reference": "Apple keynote tối giản kết hợp phong cách du lịch biển tươi sáng; mỗi slide ÍT CHỮ, chữ CÓ RÕ, nhấn từ khóa"
+  },
+  "global_css_path": "/home/z/my-project/download/slides/global.css",
+  "slides_dir": "/home/z/my-project/download/slides",
+  "language": "vi",
+  "speaker_notes": "none",
+  "slides": [
+    {
+      "title": "Bìa — Tour du lịch Nha Trang",
+      "layout": "cover",
+      "output_path": "/home/z/my-project/download/slides/slide_01.html",
+      "task_brief": "BÌA (chia đôi: chữ trái 55%, ảnh phải 45%). Chip trên cùng: 'BÀI THUYẾT TRÌNH NHÓM'. Tiêu đề cực lớn (fs-display, 900): 'TOUR DU LỊCH NHA TRANG' (coi 'NHA TRANG' tô màu accent --accent-deep). Dưới tiêu đề: accent-bar. Phụ đề (fs-h3, weight 500, màu --text-muted): 'Khám phá viên ngọc xanh của biển Đông'. Badge tròn/oval nhỏ: '3 NGÀY 2 ĐÊM'. Cuối trái: dòng nhỏ (fs-small): 'Thành viên: Kỳ Anh · Minh Nhật · Anh Thư · Thanh Nguyên'. Ảnh phải full-height .img-frame: https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/28a28755af7e.jpg (toàn cảnh bãi biển Nha Trang nhìn từ trên cao). Nền trái có thể thêm dải màu --bg-soft mềm phía dưới. ÍT CHỮ, không thêm nội dung khác."
+    },
+    {
+      "title": "Thành viên nhóm",
+      "layout": "member grid",
+      "output_path": "/home/z/my-project/download/slides/slide_02.html",
+      "task_brief": "SLIDE THÀNH VIÊN (KHÔNG có ảnh). Chip: 'NHÓM THỰC HIỆN'. Tiêu đề (fs-h1): 'Thành viên nhóm'. Dưới tiêu đề accent-bar. Lưới 4 thẻ nằm ngang đều nhau (mỗi thẻ .card-soft, padding lớn, bo góc, căn giữa): thẻ 1 — vòng tròn lớn màu --primary-soft chữ 'K' (fs-h1, màu --primary, weight 800) + tên 'Kỳ Anh' (fs-h2, 800); thẻ 2 — chữ 'M' + 'Minh Nhật'; thẻ 3 — chữ 'A' + 'Anh Thư'; thẻ 4 — chữ 'T' + 'Thanh Nguyên'. Mỗi thẻ thêm dòng nhỏ (fs-small, --text-muted): 'Thành viên nhóm' và số thứ tự góc thẻ dạng '01' → '04' (fs-small, weight 700, màu --accent-deep). Vòng tròn avatar thứ 2 và 3 đổi màu --accent-soft chữ --accent-deep cho sinh động. ÍT CHỮ."
+    },
+    {
+      "title": "Nội dung trình bày",
+      "layout": "agenda list",
+      "output_path": "/home/z/my-project/download/slides/slide_03.html",
+      "task_brief": "AGENDA 4 PHẦN (không ảnh). Tiêu đề (fs-h1): 'Nội dung trình bày' + accent-bar. 4 hàng lớn xếp dọc, mỗi hàng .card với num-badge vuông bên trái chứa số ('01','02','03','04', fs-h2): hàng 1 — 'MỞ ĐẦU' (fs-h2, 800) + mô tả ngắn (fs-small, --text-muted): 'Giới thiệu điểm đến & lý do chọn đề tài'; hàng 2 — 'THỰC TRẠNG DU LỊCH NHA TRANG' + 'Tiềm năng nổi bật & thách thức hiện nay'; hàng 3 — 'THIẾT KẾ TOUR' + 'Lịch trình 3 ngày 2 đêm & chi phí'; hàng 4 — 'KẾT LUẬN' + 'Tổng kết đề tài & đề xuất'. Hàng 3 dùng .card-accent để nhấn mạnh phần trọng tâm. ÍT CHỮ, khoảng cách thoáng."
+    },
+    {
+      "title": "Divider — Phần 01 Mở đầu",
+      "layout": "section header",
+      "output_path": "/home/z/my-project/download/slides/slide_04.html",
+      "task_brief": "SECTION DIVIDER Phần 1, nền .card-navy full-slide (nền --primary, chữ trắng), không ảnh. Số chương khổng lồ mờ ở góc phải: '01' (fs lớn ~260px, weight 900, màu trắng opacity 0.12). Chip màu sáng trên nền navy (viền --accent, chữ --accent): 'PHẦN 01 / 04'. Tiêu đề (fs-display, 900, trắng): 'MỞ ĐẦU'. accent-bar. Tagline (fs-h3, trắng opacity 0.85): 'Giới thiệu điểm đến Nha Trang và lý do chọn đề tài'. Dưới cùng: dot-track 4 chấm, chấm 1 active màu --accent, còn lại trắng mờ. ÍT CHỮ."
+    },
+    {
+      "title": "Nha Trang — viên ngọc xanh của biển Đông",
+      "layout": "split text+image",
+      "output_path": "/home/z/my-project/download/slides/slide_05.html",
+      "task_brief": "SPLIT chữ trái 52% / ảnh phải 48%. Chip: 'GIỚI THIỆU'. Tiêu đề (fs-h1): 'Nha Trang — viên ngọc xanh của biển Đông'. 3 dòng fact ngắn, mỗi dòng có Material Icon tròn nền --accent-soft màu --accent-deep: (icon 'location_on') 'Thành phố biển tỉnh Khánh Hòa — miền Trung Việt Nam'; (icon 'waves') 'Vịnh Nha Trang — một trong những vịnh đẹp nhất thế giới'; (icon 'wb_sunny') 'Nắng ấm quanh năm — hơn 300 ngày nắng mỗi năm'. Mỗi fact: chữ fs-body weight 600, KHÔNG giải thích dài. Ảnh phải .img-frame full-height: https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5fee4024041a.jpg (panorama thành phố biển Nha Trang). Dưới cùng trái: chip-navy 'Biển xanh · Cát trắng · Nắng vàng'. ÍT CHỮ."
+    },
+    {
+      "title": "Lý do chọn đề tài & mục tiêu",
+      "layout": "two columns",
+      "output_path": "/home/z/my-project/download/slides/slide_06.html",
+      "task_brief": "HAI CỘT (không ảnh). Tiêu đề (fs-h1): 'Lý do chọn đề tài & mục tiêu' + accent-bar. Cột trái .card-soft, đầu có chip 'LÝ DO CHỌN ĐỀ TÀI' + icon 'lightbulb', 3 item ngắn mỗi item có Material Icon nhỏ 'check_circle' màu --accent-deep, text fs-body weight 600: 'Điểm đến gần gũi, nổi tiếng bậc nhất Việt Nam'; 'Chi phí hợp lý với học sinh — sinh viên'; 'Nhiều trải nghiệm: biển đảo, văn hóa, ẩm thực'. Cột phải .card-navy, chip viền --accent 'MỤC TIÊU' + icon 'flag', 3 item icon 'check_circle' màu --accent, chữ trắng fs-body weight 600: 'Thiết kế tour 3N2Đ hợp lý, chi tiết'; 'Rèn kỹ năng lập kế hoạch du lịch'; 'Rèn kỹ năng làm việc nhóm'. ÍT CHỮ, các item tách dòng thoáng."
+    },
+    {
+      "title": "Divider — Phần 02 Thực trạng",
+      "layout": "section header",
+      "output_path": "/home/z/my-project/download/slides/slide_07.html",
+      "task_brief": "SECTION DIVIDER Phần 2, nền --bg-soft (khác slide 4: nền sáng, chữ navy), không ảnh. Số chương khổng lồ mờ góc phải: '02' (~260px, weight 900, màu --primary opacity 0.08). Chip: 'PHẦN 02 / 04'. Tiêu đề (fs-display, 900, --primary): 'THỰC TRẠNG DU LỊCH NHA TRANG' (cho phép 2 dòng, giảm còn fs ~72px nếu tràn). accent-bar. Tagline (fs-h3, --text-muted): 'Tiềm năng nổi bật và những thách thức hiện nay'. Dot-track 4 chấm chấm 2 active. ÍT CHỮ."
+    },
+    {
+      "title": "Tiềm năng du lịch Nha Trang",
+      "layout": "stats",
+      "output_path": "/home/z/my-project/download/slides/slide_08.html",
+      "task_brief": "SLIDE SỐ LIỆU (không ảnh). Chip: 'TIỀM NĂNG'. Tiêu đề (fs-h1): 'Điểm đến hút khách bậc nhất Việt Nam'. 3 thẻ số liệu lớn cạnh nhau: thẻ 1 .card-accent — số '16,4 triệu' (fs ~64px, 900, --accent-deep) + nhãn (fs-body, 700) 'lượt khách đến Khánh Hòa năm 2025' + icon 'trending_up'; thẻ 2 .card-soft — '5,5 triệu' (900, --primary) + 'lượt khách quốc tế' + icon 'public'; thẻ 3 .card-soft — 'Top 29' (900, --primary) + 'vịnh đẹp nhất thế giới' + icon 'workspace_premium'. Dưới cùng dòng nhỏ fs-micro --text-muted: 'Nguồn: Hệ thống thống kê du lịch Việt Nam — 2025'. Chữ nhãn ngắn gọn, KHÔNG đoạn văn. ÍT CHỮ."
+    },
+    {
+      "title": "Thách thức hiện nay",
+      "layout": "bento 2x2",
+      "output_path": "/home/z/my-project/download/slides/slide_09.html",
+      "task_brief": "LƯỚI 2x2 THẺ (không ảnh). Chip: 'THÁCH THỨC'. Tiêu đề (fs-h1): 'Vấn đề cần lưu ý'. 4 thẻ .card, mỗi thẻ: Material Icon tròn nền --primary-soft màu --primary (fs ~40px) + tiêu đề (fs-h3, 800) + 1 dòng ngắn (fs-small, --text-muted): thẻ 1 icon 'groups' — 'Mùa cao điểm quá tải' / 'Đông khách vào hè và dịp lễ'; thẻ 2 icon 'compare_arrows' — 'Cạnh tranh mạnh' / 'Nhiều điểm biển mới nổi lên'; thẻ 3 icon 'payments' — 'Giá dịch vụ biến động' / 'Tăng cao vào mùa du lịch'; thẻ 4 icon 'category' — 'Sản phẩm chưa đa dạng' / 'Cần làm mới trải nghiệm'. ÍT CHỮ."
+    },
+    {
+      "title": "Divider — Phần 03 Thiết kế tour",
+      "layout": "section header",
+      "output_path": "/home/z/my-project/download/slides/slide_10.html",
+      "task_brief": "SECTION DIVIDER Phần 3, nền .card-navy full-slide như slide 4, không ảnh. Số chương khổng lồ mờ góc phải: '03' (~260px, 900, trắng opacity 0.12). Chip viền --accent chữ --accent: 'PHẦN 03 / 04'. Tiêu đề (fs-display, 900, trắng): 'THIẾT KẾ TOUR' (1 dòng) + dòng phụ (fs-h2, 700, màu --accent): '3 NGÀY 2 ĐÊM'. Tagline (fs-h3, trắng opacity 0.85): 'Lịch trình — Điểm đến — Chi phí'. Dot-track chấm 3 active. ÍT CHỮ."
+    },
+    {
+      "title": "Tổng quan tour",
+      "layout": "info cards 2x2",
+      "output_path": "/home/z/my-project/download/slides/slide_11.html",
+      "task_brief": "TỔNG QUAN TOUR (không ảnh). Chip: 'TỔNG QUAN'. Tiêu đề (fs-h1): 'Thông tin tour'. Lưới 2x2 thẻ .card-soft lớn, mỗi thẻ: Material Icon tròn nền --accent-soft màu --accent-deep + nhãn nhỏ (fs-small, 700, --text-muted, in hoa) + giá trị (fs-h3, 800): thẻ 1 icon 'schedule' — 'THỜI GIAN' / '3 ngày 2 đêm'; thẻ 2 icon 'directions_bus' — 'DI CHUYỂN' / 'Xe giường nằm · Máy bay'; thẻ 3 icon 'groups' — 'ĐỐI TƯỢNG' / 'Học sinh · Sinh viên · Nhóm bạn'; thẻ 4 icon 'beach_access' — 'TRẢI NGHIỆM' / 'Biển đảo · Văn hóa · Ẩm thực'. ÍT CHỮ, căn chỉnh đều."
+    },
+    {
+      "title": "Lịch trình 3 ngày 2 đêm",
+      "layout": "timeline 3 columns",
+      "output_path": "/home/z/my-project/download/slides/slide_12.html",
+      "task_brief": "LỊCH TRÌNH 3 CỘT (có 3 ảnh nhỏ). Chip: 'LỊCH TRÌNH'. Tiêu đề (fs-h1): 'Hành trình 3 ngày 2 đêm'. 3 cột .card bằng nhau, mỗi cột: ảnh nhỏ cao ~130px .img-frame trên cùng + nhãn ngày (chip-navy nhỏ 'NGÀY 1'/'NGÀY 2'/'NGÀY 3') + tiêu đề cột (fs-h3, 800) + 3 dòng ngắn (fs-small, 600) có icon 'chevron_right' màu --accent-deep. Cột 1 ảnh https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5de2c823e280.jpeg — 'KHÁM PHÁ THÀNH PHỐ': 'Đón đoàn, nhận phòng'; 'Tháp Bà Ponagar — Chùa Long Sơn'; 'Tắm biển · Hải sản tối'. Cột 2 ảnh https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/23bce2b858b4.jpg — 'DU THUYỀN ĐẢO': 'Hòn Mun — ngắm san hô'; 'Hòn Tằm — thể thao biển'; 'Chiều: Vinpearl · phố đi bộ'. Cột 3 ảnh https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/91c437c1ca17.png — 'BIỂN & TẠM BIỆT': 'Bãi Dài — biển hoang sơ'; 'Chợ Đầm — mua đặc sản'; 'Tiễn đoàn, kết thúc tour'. Giữ dòng ngắn, KHÔNG xuống quá 3 dòng/cột."
+    },
+    {
+      "title": "Chi phí dự trù",
+      "layout": "cost split",
+      "output_path": "/home/z/my-project/download/slides/slide_13.html",
+      "task_brief": "CHI PHÍ (không ảnh). Chip: 'CHI PHÍ'. Tiêu đề (fs-h1): 'Chi phí dự trù / 1 người'. Trái ~58%: 5 hàng .card-soft, mỗi hàng icon + tên (fs-body, 700) + số tiền (fs-h3, 800, --primary, căn phải): 'directions_bus' — Vận chuyển — '900.000đ'; 'hotel' — Lưu trú 2 đêm — '700.000đ'; 'restaurant' — Ăn uống — '500.000đ'; 'confirmation_number' — Vé tham quan — '300.000đ'; 'savings' — Dự phòng — '100.000đ'. Phải ~42%: thẻ .card-navy lớn căn giữa: nhãn (fs-small, trắng mờ, in hoa) 'TỔNG CHI PHÍ DỰ KIẾN', số '2.500.000đ' (fs ~60px, 900, màu --accent sáng #4DE3D6), dòng nhỏ (fs-small, trắng mờ): 'Mức phí phù hợp nhóm học sinh — sinh viên'. SỐ LIỆU LÀ DỰ TOÁN THAM KHẢO của nhóm. ÍT CHỮ."
+    },
+    {
+      "title": "Kết luận",
+      "layout": "key message",
+      "output_path": "/home/z/my-project/download/slides/slide_14.html",
+      "task_brief": "KẾT LUẬN (không ảnh). Chip: 'PHẦN 04 / 04 — KẾT LUẬN'. Tiêu đề (fs-h1): 'Những điều rút ra'. 3 hàng lớn .card-soft, mỗi hàng icon tròn nền --accent chữ trắng + nội dung (fs-body, 700): hàng 1 icon 'location_city' — 'Nha Trang: điểm đến giàu tiềm năng, hút hàng chục triệu lượt khách mỗi năm'; hàng 2 icon 'route' — 'Tour 3N2Đ: lịch trình hợp lý, chi phí chỉ ~2,5 triệu đồng/người'; hàng 3 icon 'diversity_3' — 'Bài học: lập kế hoạch chi tiết và làm việc nhóm hiệu quả'. Hàng cuối có thể dùng .card-accent nhấn mạnh. ÍT CHỮ, không thêm đoạn văn."
+    },
+    {
+      "title": "Cảm ơn — Q&A",
+      "layout": "closing",
+      "output_path": "/home/z/my-project/download/slides/slide_15.html",
+      "task_brief": "SLIDE KẾT (không ảnh), nền --primary full-slide, chữ trắng, trang trí vài hình tròn mờ màu --accent opacity thấp ở góc. Căn giữa dọc: chip viền --accent chữ --accent: 'Q & A'. Tiêu đề (fs-display, 900, trắng): 'CẢM ƠN THẦY CÔ VÀ CÁC BẠN!' (nếu dài cho phép 2 dòng). accent-bar căn giữa. Dòng (fs-h3, trắng opacity 0.85): 'Rất mong nhận được câu hỏi và góp ý'. Dòng nhỏ cuối (fs-small, trắng opacity 0.7): 'Nhóm thực hiện: Kỳ Anh · Minh Nhật · Anh Thư · Thanh Nguyên'. ÍT CHỮ."
+    }
+  ]
+}
