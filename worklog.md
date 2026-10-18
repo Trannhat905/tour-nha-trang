@@ -167,3 +167,17 @@ Work Log:
 
 Stage Summary:
 - User có thể tải trực tiếp file zip nhẹ từ thư mục download thay vì "Download workspace"
+
+---
+Task ID: 11
+Agent: main-agent
+Task: Tạo file index.html độc lập gộp 15 slide để user tự host / mở trực tiếp
+
+Work Log:
+- Viết scripts/build_index_html.py: trích body + style của download/slides/slide_01..15.html, bỏ rule html,body, scope override .dot-track của slide 10 thành .dt-navy (tránh đè dot slide 4/7)
+- Player: .deck scroll-snap y mandatory, canvas 1280x720 scale theo viewport (--s), dot nav phải + counter + progress bar + hint pill, phím ↑↓/Space/PageUp-Down/Home/End, F/F11 fullscreen, in ra PDF được (@media print)
+- Vá nội dung theo bản web mới nhất: slide 1 chip "BÀI THUYẾT TRÌNH NHÓM 4" + bỏ dòng thành viên; slide 2 chip "NHÓM 4 THỰC HIỆN"; slide 8 số liệu 2026 (23,7 triệu / hơn 9,4 triệu / hơn 80.200 tỷ) + Lưu ý dự báo + icon payments; slide 15 "Nhóm 4 thực hiện:"
+- Verify agent-browser file://: slide 1, 8, 10 render đúng, dot nav + counter + scale OK; grep xác nhận chuỗi mới có / chuỗi cũ sạch; thêm download/index.html (48KB) vào Tour-Nha-Trang-tong-hop.zip
+
+Stage Summary:
+- Bàn giao download/index.html: 1 file duy nhất, mở double-click là trình chiếu được (cần mạng cho font/ảnh/Tailwind CDN); đã kèm trong zip tổng hợp
