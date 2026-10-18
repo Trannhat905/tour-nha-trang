@@ -33,11 +33,14 @@ export const GOALS = [
   "Rèn kỹ năng làm việc nhóm",
 ];
 
-export const STATS = [
-  { v: "16,4 triệu", l: "lượt khách đến Khánh Hòa năm 2025", hot: true },
-  { v: "5,5 triệu", l: "lượt khách quốc tế", hot: false },
-  { v: "Top 29", l: "vịnh đẹp nhất thế giới", hot: false },
+export const STATS: { v: string; l: string; hot?: boolean; pre?: string }[] = [
+  { v: "23,7 triệu", l: "lượt khách du lịch tổng", hot: true },
+  { v: "9,4 triệu", l: "lượt khách quốc tế", pre: "hơn" },
+  { v: "80.200 tỷ", l: "đồng doanh thu du lịch dự kiến", pre: "hơn" },
 ];
+
+export const STATS_NOTE =
+  "Đây là số liệu dự báo cho cả năm 2026, chưa phải kết quả tổng kết cuối năm.";
 
 export const CHALLENGES = [
   { icon: "users", t: "Mùa cao điểm quá tải", d: "Đông khách vào hè và dịp lễ" },

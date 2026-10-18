@@ -140,3 +140,18 @@ Work Log:
 
 Stage Summary:
 - Toàn bộ 15 slide: chữ hoa tiếng Việt đủ dấu, không cắt, không dính, không mờ; đã bàn giao lại web
+
+---
+Task ID: 9
+Agent: main-agent
+Task: Gắn nhãn "Nhóm 4" ở đầu bài + cập nhật số liệu slide Tiềm năng (dự báo 2026) + thêm khối Lưu ý (feedback người dùng)
+
+Work Log:
+- Cover (slides-a.tsx): chip bìa "Bài thuyết trình nhóm" → "Bài thuyết trình nhóm 4"
+- Nhất quán nhãn nhóm: chip slide 2 "Nhóm thực hiện" → "Nhóm 4 thực hiện"; slide 15 "Nhóm thực hiện: ..." → "Nhóm 4 thực hiện: ..."; metadata layout.tsx thêm "nhóm 4"
+- deck.ts: STATS mới — 23,7 triệu lượt khách du lịch tổng (hot) · hơn 9,4 triệu lượt khách quốc tế · hơn 80.200 tỷ đồng doanh thu du lịch dự kiến; thêm STATS_NOTE + type { v, l, hot?, pre? }
+- SlideStats: value hỗ trợ tiền tố "hơn" (span 0.42em trước số, .display uppercase tự chuyển HƠN); thay dòng nguồn 2025 (mâu thuẫn với dự báo 2026) bằng khối Lưu ý: icon Info + ring mint + chữ "Lưu ý: Đây là số liệu dự báo cho cả năm 2026, chưa phải kết quả tổng kết cuối năm." (STATS_NOTE)
+- Verify agent-browser: desktop 1440x900 (bìa, slide 2, slide 8) + mobile 390x844 (bìa, slide 8) — số liệu 1 dòng gọn, Lưu ý không tràn, dấu tiếng Việt đầy đủ; console sạch; lint sạch
+
+Stage Summary:
+- Bìa mang nhãn NHÓM 4; slide Tiềm năng dùng bộ số dự báo 2026 (23,7 triệu / hơn 9,4 triệu / hơn 80.200 tỷ đồng) kèm khối Lưu ý dự báo

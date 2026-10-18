@@ -12,7 +12,7 @@ const bvp = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   title: "Tour Du Lịch Nha Trang — 3 Ngày 2 Đêm",
   description:
-    "Bài thuyết trình nhóm: Thiết kế tour du lịch Nha Trang 3 ngày 2 đêm — biển xanh, cát trắng, nắng vàng. Nhóm thực hiện: Kỳ Anh, Minh Nhật, Anh Thư, Thanh Nguyên.",
+    "Bài thuyết trình nhóm 4: Thiết kế tour du lịch Nha Trang 3 ngày 2 đêm — biển xanh, cát trắng, nắng vàng. Nhóm 4 thực hiện: Kỳ Anh, Minh Nhật, Anh Thư, Thanh Nguyên.",
   keywords: ["Nha Trang", "tour du lịch", "thuyết trình", "3 ngày 2 đêm", "Khánh Hòa"],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",

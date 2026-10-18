@@ -390,7 +390,7 @@ export function SlideThanks() {
           className="rv mt-10 text-[clamp(0.72rem,1.05vw,1rem)] font-semibold tracking-wide text-white/85"
           style={{ ["--d" as string]: "0.4s" }}
         >
-          Nhóm thực hiện: {MEMBERS.join(" · ")}
+          Nhóm 4 thực hiện: {MEMBERS.join(" · ")}
         </p>
       </div>
     </section>

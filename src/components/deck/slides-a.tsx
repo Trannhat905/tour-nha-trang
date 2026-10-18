@@ -8,9 +8,19 @@ import {
   CheckCircle2,
   Lightbulb,
   Flag,
+  Info,
   type LucideIcon,
 } from "lucide-react";
-import { IMG, MEMBERS, AGENDA, FACTS, REASONS, GOALS, STATS } from "@/lib/deck";
+import {
+  IMG,
+  MEMBERS,
+  AGENDA,
+  FACTS,
+  REASONS,
+  GOALS,
+  STATS,
+  STATS_NOTE,
+} from "@/lib/deck";
 
 /* ---------------- shared bits ---------------- */
 
@@ -73,7 +83,7 @@ export function SlideCover() {
         <div className="relative z-10 flex flex-col justify-center px-[7vw] pb-24 pt-16 lg:pb-24">
           <Chip className="rv w-fit" tone="navy">
             <span className="inline-block h-2 w-2 rounded-full bg-[#2ec4b6]" />
-            Bài thuyết trình nhóm
+            Bài thuyết trình nhóm 4
           </Chip>
           <h1
             className="display rv mt-6 text-[clamp(2.5rem,6.2vw,5.6rem)] text-[#0a3d62]"
@@ -128,7 +138,7 @@ export function SlideMembers() {
       </div>
       <div className="relative z-10 mx-auto flex h-full max-w-[1300px] flex-col justify-center px-[7vw]">
         <Chip className="rv w-fit" tone="mint">
-          Nhóm thực hiện
+          Nhóm 4 thực hiện
         </Chip>
         <h2
           className="display rv mt-5 text-[clamp(2rem,4.8vw,4.2rem)] text-[#0a3d62]"
@@ -423,6 +433,9 @@ export function SlideStats() {
                   s.hot ? "text-[#149d92]" : "text-[#0a3d62]"
                 }`}
               >
+                {s.pre && (
+                  <span className="mr-1 text-[0.42em] font-extrabold">{s.pre}</span>
+                )}
                 {s.v}
               </p>
               <p className="mt-3 max-w-[16rem] text-[clamp(0.78rem,1.15vw,1.05rem)] font-semibold leading-snug text-[#56718a]">
@@ -431,12 +444,19 @@ export function SlideStats() {
             </div>
           ))}
         </div>
-        <p
-          className="rv mt-[clamp(0.8rem,2vh,1.6rem)] text-[clamp(0.7rem,0.95vw,0.85rem)] font-medium text-[#56718a]"
+        <div
+          className="rv mt-[clamp(0.9rem,2.2vh,1.8rem)] flex w-fit max-w-full items-center gap-3 rounded-2xl bg-[#2ec4b6]/10 px-[clamp(0.9rem,1.6vw,1.4rem)] py-[clamp(0.55rem,1.4vh,0.9rem)] ring-1 ring-[#2ec4b6]/45"
           style={{ ["--d" as string]: "0.45s" }}
         >
-          Nguồn: Hệ thống thống kê du lịch Việt Nam — 2025
-        </p>
+          <Info
+            className="h-[clamp(1rem,1.4vw,1.3rem)] w-[clamp(1rem,1.4vw,1.3rem)] shrink-0 text-[#149d92]"
+            strokeWidth={2.4}
+          />
+          <p className="text-[clamp(0.72rem,1.05vw,0.95rem)] font-semibold leading-snug text-[#0a3d62]">
+            <span className="font-extrabold text-[#149d92]">Lưu ý: </span>
+            {STATS_NOTE}
+          </p>
+        </div>
       </div>
     </section>
   );
