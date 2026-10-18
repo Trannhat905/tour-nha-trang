@@ -226,3 +226,21 @@ Work Log:
 
 Stage Summary:
 - Dự án đã lên GitHub: https://github.com/Trannhat905/tour-nha-trang (public, branch main); token đã bị xoá khỏi .git/config; còn lại user tự bật Pages qua web UI (token thiếu quyền pages write)
+
+---
+Task ID: 14
+Agent: main-agent
+Task: Đổi ảnh từ CDN z.ai sang tự host (user đã deploy lên Vercel: tour-nha-trang.vercel.app)
+
+Work Log:
+- Inventar: 5 ảnh z-cdn.chatglm.cn/image-search-mcp dùng ở deck.ts (Next.js) + slides 1/5/12 tĩnh; icon logo z-ai/static ở layout.tsx
+- Tải 5 ảnh về public/images/ với tên ngữ nghĩa: beach-aerial.jpg (637KB), city-panorama.jpg (359KB), ponagar.jpg (156KB), snorkeling.jpg (194KB), island-boat.png (525KB) — tổng 1.9MB
+- deck.ts: IMG → "/images/beach-aerial.jpg" v.v.; layout.tsx: favicon → "/logo.svg" (local có sẵn)
+- build_index_html.py: thêm inline_zcdn_images() — tải ảnh + nhúng data URI base64 vào index.html độc lập, assert 0 tham chiếu z-cdn còn lại
+- Rebuild index.html: 51KB → 2.5MB, 5 ảnh base64, 0 z-cdn; copy lên gốc repo (cho GitHub Pages)
+- Verify agent-browser file://: slide 1 (ảnh hero base64 render chuẩn, đủ dấu) + slide 12 (3 ảnh Ponagar/snorkel/island OK), counter 12/15, console chỉ có warning Tailwind CDN vô hại; lint sạch
+- Zip mới 11MB (thêm public/images + index.html 2.5MB + README + root index.html)
+- Commit 3278721 + push GitHub OK (Vercel auto-redeploy); token xoá khỏi .git/config
+
+Stage Summary:
+- Toàn bộ ảnh đã tự host: Next.js/Vercel phục vụ từ /images/*, index.html nhúng base64 100% tự chứa — không còn phụ thuộc CDN z.ai
