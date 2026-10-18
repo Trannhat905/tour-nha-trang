@@ -211,3 +211,18 @@ Work Log:
 
 Stage Summary:
 - Repo local đã sẵn sàng 100% (commit d1b5263 + README + repo sạch 9.5MB download); CHỜ user dán Personal Access Token vào chat để chạy scripts/github_push.sh <token> tour-nha-trang public
+
+---
+Task ID: 13-b
+Agent: main-agent
+Task: Thực hiện push lên GitHub bằng token do user cung cấp (fine-grained PAT, tài khoản Trannhat905)
+
+Work Log:
+- Token #1 (chỉ đọc public repos): tạo repo bị 403 — token fine-grained cần quyền Administration write; chẩn đoán bằng API + hướng dẫn user sửa token (All repositories + Administration & Contents read/write + Regenerate)
+- Token #2: chạy scripts/github_push.sh → tạo repo Trannhat905/tour-nha-trang (public) thành công + push main OK; script tự xoá token khỏi .git/config
+- Bonus GitHub Pages: copy download/index.html → gốc repo (commit 3deb23c) + push để Pages phục vụ trực tiếp; toàn bộ ảnh là URL ngoài (z-cdn) nên không cần assets
+- Bật Pages qua API bị 403 — header X-Accepted-GitHub-Permissions cho thấy cần quyền "pages" write (quyền riêng mới, tách khỏi Administration, token user chưa có) → chuyển hướng dẫn user bật tay 4 click (Settings → Pages → Deploy from branch main /root)
+- Verify qua API: repo public, branch main, đủ file (README.md, index.html gốc repo, src/, download/, scripts/, prisma/, db/)
+
+Stage Summary:
+- Dự án đã lên GitHub: https://github.com/Trannhat905/tour-nha-trang (public, branch main); token đã bị xoá khỏi .git/config; còn lại user tự bật Pages qua web UI (token thiếu quyền pages write)
