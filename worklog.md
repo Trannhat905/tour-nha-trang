@@ -78,3 +78,20 @@ Work Log:
 
 Stage Summary:
 - Đã bàn giao: download/Tour-du-lich-Nha-Trang.pptx (15 slide) + thư mục download/slides/ (15 HTML + global.css + slides_brief.json)
+
+---
+Task ID: 5
+Agent: main-agent
+Task: Xây web kiểu Awwwards cho bài thuyết trình "Tour du lịch Nha Trang" (Next.js)
+
+Work Log:
+- Init fullstack env (Next.js 16 + Tailwind 4 + TypeScript)
+- Tạo src/lib/deck.ts (dữ liệu 15 slide), src/app/globals.css (grain, marquee, reveal, ghost-num, cursor, snap), src/app/layout.tsx (Be Vietnam Pro subset vietnamese + metadata), next.config.ts (remotePatterns z-cdn.chatglm.cn)
+- Tạo src/components/deck/slides-a.tsx (slide 1-8), slides-b.tsx (slide 9-15), Deck.tsx (snap scroll + IntersectionObserver + keyboard nav + dot nav + progress bar + counter + fullscreen F11/f + parallax + custom cursor)
+- Sửa lỗi runtime: next/image fill + style.height xung đột → chuyển sang width/height + class absolute
+- Sửa lint: toggleFs thứ tự khai báo, activeRef trong render, setMounted trong effect
+- Sửa responsive mobile: slide 12 nén ảnh h-16 + padding nhỏ để vừa 100dvh
+- Agent-browser verify: 15 slide render OK desktop 1440x900 + mobile 390x844, snap 1-slide-at-a-time OK, ArrowUp/Down/Home/End OK, dot nav OK, fullscreen API OK (nút + phím f), F11 native hoạt động qua browser, không có console error, lint sạch
+
+Stage Summary:
+- Web Awwwards 15 section full-screen snap hoàn thành, preview: https://preview-873d2fdf-0644-49b8-95c2-cdfd42be99b7.space-z.ai/
