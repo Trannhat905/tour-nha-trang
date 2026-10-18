@@ -181,3 +181,17 @@ Work Log:
 
 Stage Summary:
 - Bàn giao download/index.html: 1 file duy nhất, mở double-click là trình chiếu được (cần mạng cho font/ảnh/Tailwind CDN); đã kèm trong zip tổng hợp
+
+---
+Task ID: 12
+Agent: main-agent
+Task: Thêm hiệu ứng nhảy chữ khi chuyển slide cho download/index.html
+
+Work Log:
+- Sửa scripts/build_index_html.py: thêm CSS @keyframes jl-in (nhảy nảy: translateY .65em + scale .6 + rotate 5deg → overshoot -.14em scale 1.08 → về vị trí) cho .jl (từng ký tự, delay calc(var(--i)*26ms)), jf-in (fade-up 16px, stagger 80ms) cho đoạn p/li; chỉ chạy khi .stage.is-live → replay mỗi lần quay lại slide; prefers-reduced-motion + @media print tắt hiệu ứng
+- JS: tách grapheme bằng Intl.Segmenter (fallback Array.from), bỏ qua .material-icons (tránh vỡ ligature icon), text trong container flex (chip) bọc 1 .jw duy nhất, ký tự whitespace trả về text node (tránh inline-block collapse mất khoảng trắng); IO callback thêm/xoá is-live
+- Fix 3 bug khi debug: (1) [].map.call trên Segments object (iterable không có .length) → rỗng, đổi Array.from; (2) bọc đôi .slide (body đã có root .slide mà template lại bọc thêm → 30 phần tử, h1 bị split 2 lần) → dùng trực tiếp body root; (3) space trong .jl inline-block bị collapse → text node
+- Verify: 15 slide root đúng, 634 .jl + 62 .jf, animationName=jl-in trên stage live, ảnh giữa hiệu ứng (chữ chưa vào) + settled (layout chuẩn, đủ khoảng trắng "BÀI THUYẾT TRÌNH NHÓM 4", "GIỚI THIỆU", "Biển xanh · Cát trắng · Nắng vàng"), console 0 lỗi; cập nhật zip
+
+Stage Summary:
+- index.html có hiệu ứng nhảy chữ per-character khi chuyển slide + fade-up stagger cho đoạn văn, replay mỗi lần hiện slide; file vẫn 1 file duy nhất 51KB

@@ -210,6 +210,21 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 .deck::-webkit-scrollbar{width:0}
 .stage{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;padding:0}
 .stage .slide{flex:none;transform:scale(var(--s,1));transform-origin:center center;box-shadow:0 26px 70px rgba(10,61,98,.16)}
+
+/* ---------- hiệu ứng nhảy chữ khi chuyển slide ---------- */
+.jw{display:inline-block;white-space:nowrap}
+.jl{display:inline-block;opacity:0}
+.stage.is-live .jl{animation:jl-in .62s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*26ms + .12s)}
+@keyframes jl-in{
+  0%{opacity:0;transform:translateY(.65em) scale(.6) rotate(5deg)}
+  55%{opacity:1;transform:translateY(-.14em) scale(1.08) rotate(-2.5deg)}
+  75%{transform:translateY(.05em) scale(.985) rotate(1deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+.jf{opacity:0;transform:translateY(16px)}
+.stage.is-live .jf{animation:jf-in .55s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--d,0)*1ms + .28s)}
+@keyframes jf-in{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
 #bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#2EC4B6,#149D92);z-index:60;transition:width .35s cubic-bezier(.22,1,.36,1)}
 #dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:60}
 .dotp{width:12px;height:12px;border-radius:50%;border:0;padding:0;cursor:pointer;background:rgba(10,61,98,.22);transition:all .25s}
@@ -219,13 +234,13 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 #count b{color:#149D92}
 #hint{position:fixed;right:38px;bottom:16px;z-index:60;font-size:12px;font-weight:600;letter-spacing:1.5px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}
 @media (max-width:640px){#hint{display:none}#dots{right:8px}}
-@media print{#bar,#dots,#count,#hint{display:none}html,body{background:#fff}.deck{height:auto;overflow:visible;scroll-snap-type:none}.stage{height:auto;padding:0;page-break-after:always}.stage .slide{transform:none;box-shadow:none}}
+@media print{#bar,#dots,#count,#hint{display:none}html,body{background:#fff}.deck{height:auto;overflow:visible;scroll-snap-type:none}.stage{height:auto;padding:0;page-break-after:always}.stage .slide{transform:none;box-shadow:none}.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
 <main class="deck" id="deck">
-  <section class="stage"><div class="slide"><div class="slide">
+  <section class="stage"><div class="slide">
 
   <!-- decor: soft band bottom-left -->
   <div data-decor aria-hidden="true" style="position:absolute;left:0;bottom:0;width:660px;height:188px;background:var(--bg-soft);border-radius:0 84px 0 0;"></div>
@@ -254,8 +269,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/28a28755af7e.jpg" alt="Toàn cảnh bãi biển Nha Trang nhìn từ trên cao">
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
 
   <!-- Header -->
   <div>
@@ -309,8 +324,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
 
   <!-- Header -->
   <div>
@@ -359,8 +374,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="background:var(--primary);">
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary);">
 
   <!-- decor: ghost chapter number -->
   <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-52%);font-family:var(--font-num);font-size:260px;font-weight:900;line-height:1;color:#FFFFFF;opacity:0.12;">01</div>
@@ -387,8 +402,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <span style="background:rgba(255,255,255,0.45);"></span>
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide">
+</div></section>
+  <section class="stage"><div class="slide">
 
   <!-- LEFT 52% : text -->
   <div style="position:absolute;left:64px;top:56px;width:600px;z-index:10;">
@@ -429,8 +444,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5fee4024041a.jpg" alt="Panorama thành phố biển Nha Trang">
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
 
   <header style="flex:none;">
     <h1 style="margin:0;font-family:var(--font-heading);font-size:var(--fs-h1);font-weight:900;line-height:1.12;color:var(--primary);">Lý do chọn đề tài &amp; mục tiêu</h1>
@@ -488,8 +503,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </section>
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="background:var(--bg-soft);">
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--bg-soft);">
 
   <!-- Số chương khổng lồ mờ, góc phải (trang trí) -->
   <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);z-index:1;font-family:var(--font-heading);font-weight:900;font-size:260px;line-height:1;color:var(--primary);opacity:0.08;user-select:none;">02</div>
@@ -507,8 +522,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <span></span><span class="active"></span><span></span><span></span>
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
+</div></section>
+  <section class="stage"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
 
   <header style="flex:none;">
     <span class="chip-navy" style="font-size:var(--fs-small);">TIỀM NĂNG</span>
@@ -551,8 +566,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <p style="margin:0;font-size:var(--fs-micro);color:var(--text-muted);">Lưu ý: Đây là số liệu dự báo cho cả năm 2026, chưa phải kết quả tổng kết cuối năm.</p>
   </footer>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
+</div></section>
+  <section class="stage"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
 
   <header style="flex:none;">
     <span class="chip-navy" style="font-size:var(--fs-small);">THÁCH THỨC</span>
@@ -595,8 +610,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </section>
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="background:var(--primary);">
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary);">
 
   <!-- Số chương khổng lồ mờ, góc phải (trang trí) -->
   <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);z-index:1;font-family:var(--font-heading);font-weight:900;font-size:260px;line-height:1;color:#FFFFFF;opacity:0.12;user-select:none;">03</div>
@@ -615,8 +630,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <span></span><span></span><span class="active"></span><span></span>
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide flex flex-col" style="padding:56px 64px;">
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
 
   <!-- Header -->
   <div class="shrink-0">
@@ -673,8 +688,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </div>
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide flex flex-col" style="padding:52px 64px;">
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:52px 64px;">
 
   <!-- Header -->
   <div class="shrink-0">
@@ -729,8 +744,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </div>
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide flex flex-col" style="padding:56px 64px;">
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
 
   <!-- Header -->
   <div class="shrink-0">
@@ -787,8 +802,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <span style="font-size:var(--fs-micro); color:var(--text-muted);">Số liệu là dự toán tham khảo của nhóm</span>
   </div>
 
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide flex flex-col" style="padding:56px 64px;">
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
 
   <!-- Header -->
   <div class="shrink-0">
@@ -816,8 +831,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </div>
-</div></div></section>
-  <section class="stage"><div class="slide"><div class="slide" style="background:var(--primary); padding:64px;">
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary); padding:64px;">
 
   <!-- Trang trí: hình tròn mờ màu accent ở góc -->
   <div class="deco" data-decor aria-hidden="true" style="width:460px; height:460px; top:-170px; right:-150px; background:var(--accent); opacity:0.16;"></div>
@@ -834,7 +849,7 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     <p style="font-size:var(--fs-small); color:rgba(255,255,255,0.7); margin-top:44px;">Nhóm 4 thực hiện: Kỳ Anh · Minh Nhật · Anh Thư · Thanh Nguyên</p>
   </div>
 
-</div></div></section>
+</div></section>
 </main>
 <nav id="dots" aria-label="Điều hướng slide">
 <button class="dotp" data-i="0" aria-label="Slide 1"></button>
@@ -882,7 +897,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) {
-      if (e.isIntersecting) setActive(stages.indexOf(e.target));
+      if (e.isIntersecting) { e.target.classList.add('is-live'); setActive(stages.indexOf(e.target)); }
+      else e.target.classList.remove('is-live');
     });
   }, { root: deck, threshold: 0.55 });
   stages.forEach(function (st) { io.observe(st); });
@@ -901,6 +917,61 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
       if (document.fullscreenElement) document.exitFullscreen();
       else document.documentElement.requestFullscreen();
     }
+  });
+
+  /* ---------- hiệu ứng nhảy chữ: tách ký tự cho tiêu đề/chip/số, fade cho đoạn ---------- */
+  var TITLE_SEL = 'h1, h2, h3, .stat-num, .chip, .chip-navy, .chip-qa, .num-badge, .day-chip';
+  var FADE_SEL = 'p, li, .cost-name, .cost-money';
+  function graphemes(str) {
+    if (window.Intl && Intl.Segmenter) {
+      var sg = new Intl.Segmenter('vi', { granularity: 'grapheme' });
+      return Array.from(sg.segment(str), function (s) { return s.segment; });
+    }
+    return Array.from(str);
+  }
+  function inFlex(node) {
+    var d = getComputedStyle(node.parentNode).display;
+    return d.indexOf('flex') > -1 || d.indexOf('grid') > -1;
+  }
+  function splitChars(el) {
+    var i = 0;
+    function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          function charSpan(g) {
+            if (/^\s+$/.test(g)) return document.createTextNode(g);
+            var c = document.createElement('span');
+            c.className = 'jl'; c.textContent = g;
+            c.style.setProperty('--i', Math.min(i++, 34));
+            return c;
+          }
+          if (inFlex(ch)) {
+            var w0 = document.createElement('span'); w0.className = 'jw';
+            graphemes(ch.nodeValue).forEach(function (g) { w0.appendChild(charSpan(g)); });
+            frag.appendChild(w0);
+          } else {
+            ch.nodeValue.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              var w = document.createElement('span'); w.className = 'jw';
+              graphemes(part).forEach(function (g) { w.appendChild(charSpan(g)); });
+              frag.appendChild(w);
+            });
+          }
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1 && !ch.classList.contains('material-icons')) walk(ch);
+      });
+    }
+    walk(el);
+  }
+  document.querySelectorAll('.slide').forEach(function (sl) {
+    sl.querySelectorAll(TITLE_SEL).forEach(splitChars);
+    var fi = 0;
+    sl.querySelectorAll(FADE_SEL).forEach(function (el) {
+      el.classList.add('jf');
+      el.style.setProperty('--d', Math.min(fi++ * 80, 800));
+    });
   });
 
   setActive(0);

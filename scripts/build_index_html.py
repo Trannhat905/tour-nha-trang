@@ -17,7 +17,7 @@ def body_of(path: pathlib.Path) -> str:
     m = re.search(r"<body>(.*)</body>", html, re.S)
     assert m, f"no body in {path.name}"
     inner = m.group(1).strip()
-    assert 'class="slide' in inner, f"no .slide root in {path.name}"
+    assert re.match(r'<div class="slide[ "]', inner), f"no .slide root in {path.name}"
     return inner
 
 def style_of(path: pathlib.Path) -> str:
@@ -92,7 +92,7 @@ dots = "\n".join(
     for i in range(15))
 
 stages = "\n".join(
-    f'  <section class="stage"><div class="slide">{b}</div></section>'
+    f'  <section class="stage">{b}</section>'
     for b in bodies)
 
 page = f"""<!DOCTYPE html>
@@ -117,6 +117,21 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 .deck::-webkit-scrollbar{{width:0}}
 .stage{{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;padding:0}}
 .stage .slide{{flex:none;transform:scale(var(--s,1));transform-origin:center center;box-shadow:0 26px 70px rgba(10,61,98,.16)}}
+
+/* ---------- hiệu ứng nhảy chữ khi chuyển slide ---------- */
+.jw{{display:inline-block;white-space:nowrap}}
+.jl{{display:inline-block;opacity:0}}
+.stage.is-live .jl{{animation:jl-in .62s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*26ms + .12s)}}
+@keyframes jl-in{{
+  0%{{opacity:0;transform:translateY(.65em) scale(.6) rotate(5deg)}}
+  55%{{opacity:1;transform:translateY(-.14em) scale(1.08) rotate(-2.5deg)}}
+  75%{{transform:translateY(.05em) scale(.985) rotate(1deg)}}
+  100%{{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+}}
+.jf{{opacity:0;transform:translateY(16px)}}
+.stage.is-live .jf{{animation:jf-in .55s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--d,0)*1ms + .28s)}}
+@keyframes jf-in{{to{{opacity:1;transform:none}}}}
+@media (prefers-reduced-motion:reduce){{.jl,.jf{{opacity:1!important;transform:none!important;animation:none!important}}}}
 #bar{{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#2EC4B6,#149D92);z-index:60;transition:width .35s cubic-bezier(.22,1,.36,1)}}
 #dots{{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:60}}
 .dotp{{width:12px;height:12px;border-radius:50%;border:0;padding:0;cursor:pointer;background:rgba(10,61,98,.22);transition:all .25s}}
@@ -126,7 +141,7 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 #count b{{color:#149D92}}
 #hint{{position:fixed;right:38px;bottom:16px;z-index:60;font-size:12px;font-weight:600;letter-spacing:1.5px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}}
 @media (max-width:640px){{#hint{{display:none}}#dots{{right:8px}}}}
-@media print{{#bar,#dots,#count,#hint{{display:none}}html,body{{background:#fff}}.deck{{height:auto;overflow:visible;scroll-snap-type:none}}.stage{{height:auto;padding:0;page-break-after:always}}.stage .slide{{transform:none;box-shadow:none}}}}
+@media print{{#bar,#dots,#count,#hint{{display:none}}html,body{{background:#fff}}.deck{{height:auto;overflow:visible;scroll-snap-type:none}}.stage{{height:auto;padding:0;page-break-after:always}}.stage .slide{{transform:none;box-shadow:none}}.jl,.jf{{opacity:1!important;transform:none!important;animation:none!important}}}}
 </style>
 </head>
 <body>
@@ -166,7 +181,8 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 
   var io = new IntersectionObserver(function (es) {{
     es.forEach(function (e) {{
-      if (e.isIntersecting) setActive(stages.indexOf(e.target));
+      if (e.isIntersecting) {{ e.target.classList.add('is-live'); setActive(stages.indexOf(e.target)); }}
+      else e.target.classList.remove('is-live');
     }});
   }}, {{ root: deck, threshold: 0.55 }});
   stages.forEach(function (st) {{ io.observe(st); }});
@@ -185,6 +201,61 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
       if (document.fullscreenElement) document.exitFullscreen();
       else document.documentElement.requestFullscreen();
     }}
+  }});
+
+  /* ---------- hiệu ứng nhảy chữ: tách ký tự cho tiêu đề/chip/số, fade cho đoạn ---------- */
+  var TITLE_SEL = 'h1, h2, h3, .stat-num, .chip, .chip-navy, .chip-qa, .num-badge, .day-chip';
+  var FADE_SEL = 'p, li, .cost-name, .cost-money';
+  function graphemes(str) {{
+    if (window.Intl && Intl.Segmenter) {{
+      var sg = new Intl.Segmenter('vi', {{ granularity: 'grapheme' }});
+      return Array.from(sg.segment(str), function (s) {{ return s.segment; }});
+    }}
+    return Array.from(str);
+  }}
+  function inFlex(node) {{
+    var d = getComputedStyle(node.parentNode).display;
+    return d.indexOf('flex') > -1 || d.indexOf('grid') > -1;
+  }}
+  function splitChars(el) {{
+    var i = 0;
+    function walk(node) {{
+      [].slice.call(node.childNodes).forEach(function (ch) {{
+        if (ch.nodeType === 3) {{
+          var frag = document.createDocumentFragment();
+          function charSpan(g) {{
+            if (/^\\s+$/.test(g)) return document.createTextNode(g);
+            var c = document.createElement('span');
+            c.className = 'jl'; c.textContent = g;
+            c.style.setProperty('--i', Math.min(i++, 34));
+            return c;
+          }}
+          if (inFlex(ch)) {{
+            var w0 = document.createElement('span'); w0.className = 'jw';
+            graphemes(ch.nodeValue).forEach(function (g) {{ w0.appendChild(charSpan(g)); }});
+            frag.appendChild(w0);
+          }} else {{
+            ch.nodeValue.split(/(\\s+)/).forEach(function (part) {{
+              if (!part) return;
+              if (/^\\s+$/.test(part)) {{ frag.appendChild(document.createTextNode(part)); return; }}
+              var w = document.createElement('span'); w.className = 'jw';
+              graphemes(part).forEach(function (g) {{ w.appendChild(charSpan(g)); }});
+              frag.appendChild(w);
+            }});
+          }}
+          node.replaceChild(frag, ch);
+        }} else if (ch.nodeType === 1 && !ch.classList.contains('material-icons')) walk(ch);
+      }});
+    }}
+    walk(el);
+  }}
+  document.querySelectorAll('.slide').forEach(function (sl) {{
+    sl.querySelectorAll(TITLE_SEL).forEach(splitChars);
+    var fi = 0;
+    sl.querySelectorAll(FADE_SEL).forEach(function (el) {{
+      el.classList.add('jf');
+      el.style.setProperty('--d', Math.min(fi++ * 80, 800));
+    }});
   }});
 
   setActive(0);
