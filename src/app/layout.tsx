@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Bài thuyết trình nhóm 4: Thiết kế tour du lịch Nha Trang 3 ngày 2 đêm — biển xanh, cát trắng, nắng vàng. Nhóm 4 thực hiện: Kỳ Anh, Minh Nhật, Anh Thư, Thanh Nguyên.",
   keywords: ["Nha Trang", "tour du lịch", "thuyết trình", "3 ngày 2 đêm", "Khánh Hòa"],
   icons: {
-    icon: "/logo.svg",
+    icon: "/favicon.svg",
   },
   openGraph: {
     title: "Tour Du Lịch Nha Trang — 3 Ngày 2 Đêm",
