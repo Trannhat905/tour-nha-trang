@@ -90,12 +90,9 @@ export function SlideCover() {
           >
             Khám phá viên ngọc xanh của biển Đông
           </p>
-          <div className="rv mt-6 flex flex-wrap items-center gap-x-4 gap-y-2" style={{ ["--d" as string]: "0.35s" }}>
+          <div className="rv mt-6" style={{ ["--d" as string]: "0.35s" }}>
             <span className="rounded-full bg-[#0a3d62] px-6 py-3 text-[clamp(0.7rem,1vw,0.95rem)] font-bold uppercase tracking-[0.2em] text-white">
               3 ngày 2 đêm
-            </span>
-            <span className="text-[clamp(0.78rem,1.05vw,1rem)] font-semibold text-[#0a3d62]/70">
-              {MEMBERS.join(" · ")}
             </span>
           </div>
         </div>
@@ -152,11 +149,7 @@ export function SlideMembers() {
                 0{i + 1}
               </span>
               <span
-                className={`flex h-[clamp(4rem,8.5vw,7rem)] w-[clamp(4rem,8.5vw,7rem)] shrink-0 items-center justify-center rounded-full text-[clamp(1.6rem,3.4vw,3rem)] font-extrabold ${
-                  i === 1 || i === 2
-                    ? "bg-[#2ec4b6] text-white"
-                    : "bg-[#0a3d62]/10 text-[#0a3d62]"
-                }`}
+                className="flex h-[clamp(4rem,8.5vw,7rem)] w-[clamp(4rem,8.5vw,7rem)] shrink-0 items-center justify-center rounded-full bg-[#0a3d62]/10 text-[clamp(1.6rem,3.4vw,3rem)] font-extrabold text-[#0a3d62]"
               >
                 {m[0]}
               </span>

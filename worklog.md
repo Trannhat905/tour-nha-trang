@@ -110,3 +110,16 @@ Work Log:
 
 Stage Summary:
 - Web đã sửa xong: không còn dải chữ chạy ở trang bìa, font toàn site khóa Be Vietnam Pro (không thể rơi về Times New Roman), chữ danh sách to rõ hơn
+
+---
+Task ID: 7
+Agent: main-agent
+Task: Bỏ tên thành viên ở trang bìa + bỏ highlight vòng chữ M/A ở slide Thành viên (feedback người dùng)
+
+Work Log:
+- SlideCover (slides-a.tsx): xoá span {MEMBERS.join(" · ")} cạnh badge "3 NGÀY 2 ĐÊM" — tên đã có ở slide 2
+- SlideMembers (slides-a.tsx): bỏ điều kiện màu vòng avatar (i===1||i===2 mint/white) → 4 vòng đồng nhất bg-[#0a3d62]/10 text-[#0a3d62]
+- Verify agent-browser: screenshot cover + slide 2 (desktop 1440x900) OK — bìa chỉ còn badge, 4 thẻ đồng nhất; lint sạch
+
+Stage Summary:
+- Bìa không còn dòng tên; slide 2 ghi vòng chữ K/M/A/T bình thường đồng bộ
