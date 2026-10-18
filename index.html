@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tour Du Lịch Nha Trang — Bài thuyết trình Nhóm 4</title>
+<meta name="description" content="Bài thuyết trình nhóm 4: Thiết kế tour du lịch Nha Trang 3 ngày 2 đêm — 15 slide, trình chiếu cuộn từng trang.">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* ===== Palette: Xanh dương + Mint trên nền trắng ===== */
+  --bg: #FFFFFF;
+  --bg-soft: #EFF7FA;
+  --primary: #0A3D62;
+  --primary-mid: #1B6CA8;
+  --primary-soft: #E3F0F8;
+  --accent: #2EC4B6;
+  --accent-deep: #149D92;
+  --accent-soft: #DFF6F4;
+  --text-muted: #56718A;
+  --border: #D8E7F0;
+
+  /* ===== Typography tokens (Be Vietnam Pro — cỡ chữ TO, dễ đọc) ===== */
+  --font-heading: 'Be Vietnam Pro', sans-serif;
+  --font-body: 'Be Vietnam Pro', sans-serif;
+  --font-num: 'Be Vietnam Pro', sans-serif;
+
+  --fs-display: 84px;  /* tiêu đề bìa */
+  --fs-h1: 56px;       /* tiêu đề slide */
+  --fs-h2: 38px;       /* tiêu đề khối */
+  --fs-h3: 28px;       /* tiêu đề thẻ */
+  --fs-body: 25px;     /* nội dung chính */
+  --fs-small: 21px;    /* phụ đề */
+  --fs-micro: 17px;    /* ghi chú */
+}
+
+/* ===== Canvas ===== */
+.slide {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--primary);
+}
+
+/* ===== Surfaces ===== */
+.card {
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 20px;
+}
+.card-soft {
+  background: var(--bg-soft);
+  border-radius: 20px;
+}
+.card-accent {
+  background: var(--accent-soft);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+}
+.card-navy {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-radius: 20px;
+}
+
+/* ===== Accents ===== */
+.accent-bar {
+  width: 96px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.chip-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.num-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #FFFFFF;
+  border-radius: 16px;
+  font-weight: 800;
+}
+.dot-track {
+  display: flex;
+  gap: 10px;
+}
+.dot-track span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.dot-track span.active {
+  background: var(--accent);
+}
+
+/* ===== Media ===== */
+.img-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(10, 61, 98, 0.18);
+}
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Notes (ẩn) ===== */
+aside[data-notes] { display: none; }
+
+
+/* ---------- style riêng từng slide (đã bỏ rule html,body) ---------- */
+
+/* ---- style riêng từng slide ---- */
+
+/* slide 06 */
+.item { display: flex; align-items: flex-start; gap: 16px; padding: 15px 0; }
+  .item + .item { border-top: 2px solid var(--border); }
+  .card-navy .item + .item { border-top-color: rgba(255, 255, 255, 0.22); }
+  .item .material-icons { font-size: 30px; line-height: 1.25; flex: none; margin-top: 2px; }
+  .item p { margin: 0; font-size: var(--fs-body); font-weight: 600; line-height: 1.34; }
+
+/* slide 08 */
+.stat-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 28px 24px; }
+  .icon-circle { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; }
+  .stat-num { margin: 18px 0 0; font-family: var(--font-num); font-size: 60px; font-weight: 900; line-height: 1.05; letter-spacing: -1px; }
+  .stat-label { margin: 12px 0 0; font-size: var(--fs-body); font-weight: 700; line-height: 1.3; color: var(--text-muted); }
+
+/* slide 09 */
+.challenge-card { display: flex; align-items: center; gap: 26px; padding: 26px 32px; }
+  .challenge-icon { width: 78px; height: 78px; border-radius: 50%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; flex: none; }
+  .challenge-icon .material-icons { font-size: 40px; color: var(--primary); }
+  .challenge-title { margin: 0; font-family: var(--font-heading); font-size: var(--fs-h3); font-weight: 800; line-height: 1.25; color: var(--primary); }
+  .challenge-desc { margin: 7px 0 0; font-size: var(--fs-small); font-weight: 500; line-height: 1.35; color: var(--text-muted); }
+
+/* slide 10 */
+.dt-navy span { background: rgba(255, 255, 255, 0.35); }
+  .dt-navy span.active { background: var(--accent); }
+
+/* slide 11 */
+.material-icons { line-height:1; }
+
+/* slide 12 */
+.material-icons { line-height:1; }
+  .day-chip { font-size:var(--fs-micro); padding:5px 16px; letter-spacing:2px; }
+  .tl-item { display:flex; align-items:flex-start; gap:4px; }
+  .tl-item .material-icons { font-size:22px; color:var(--accent-deep); margin-top:3px; flex-shrink:0; }
+  .tl-item span.t { font-size:var(--fs-small); font-weight:600; color:var(--primary); line-height:1.3; }
+
+/* slide 13 */
+.material-icons { line-height:1; }
+  .cost-row { display:flex; align-items:center; gap:18px; padding:0 26px; flex:1; min-height:0; }
+  .cost-icon { width:48px; height:48px; border-radius:50%; background:var(--primary-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .cost-icon .material-icons { font-size:26px; color:var(--primary); }
+  .cost-name { font-size:var(--fs-body); font-weight:700; color:var(--primary); flex:1; }
+  .cost-money { font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); text-align:right; }
+
+/* slide 14 */
+.material-icons { line-height:1; }
+  .sum-row { display:flex; align-items:center; gap:26px; padding:0 32px; flex:1; min-height:0; }
+  .sum-icon { width:64px; height:64px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .sum-icon .material-icons { font-size:32px; color:#FFFFFF; }
+  .sum-text { font-size:var(--fs-body); font-weight:700; color:var(--primary); line-height:1.4; }
+
+/* slide 15 */
+.material-icons { line-height:1; }
+  .chip-qa {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:10px 30px; border-radius:999px;
+    border:2px solid var(--accent); color:var(--accent);
+    font-weight:700; letter-spacing:4px; font-size:var(--fs-small);
+    background:transparent;
+  }
+  .deco { position:absolute; border-radius:50%; pointer-events:none; }
+
+
+/* ================= PLAYER ================= */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vietnam Pro',sans-serif}
+.deck{height:100vh;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.deck::-webkit-scrollbar{width:0}
+.stage{height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;padding:0}
+.stage .slide{flex:none;transform:scale(var(--s,1));transform-origin:center center;box-shadow:0 26px 70px rgba(10,61,98,.16)}
+
+/* ---------- hiệu ứng nhảy chữ khi chuyển slide ---------- */
+.jw{display:inline-block;white-space:nowrap}
+.jl{display:inline-block;opacity:0}
+.stage.is-live .jl{animation:jl-in .62s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0)*26ms + .12s)}
+@keyframes jl-in{
+  0%{opacity:0;transform:translateY(.65em) scale(.6) rotate(5deg)}
+  55%{opacity:1;transform:translateY(-.14em) scale(1.08) rotate(-2.5deg)}
+  75%{transform:translateY(.05em) scale(.985) rotate(1deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
+}
+.jf{opacity:0;transform:translateY(16px)}
+.stage.is-live .jf{animation:jf-in .55s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--d,0)*1ms + .28s)}
+@keyframes jf-in{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#2EC4B6,#149D92);z-index:60;transition:width .35s cubic-bezier(.22,1,.36,1)}
+#dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:60}
+.dotp{width:12px;height:12px;border-radius:50%;border:0;padding:0;cursor:pointer;background:rgba(10,61,98,.22);transition:all .25s}
+.dotp:hover{background:#149D92}
+.dotp.on{background:#2EC4B6;transform:scale(1.45);box-shadow:0 0 0 3px rgba(255,255,255,.65)}
+#count{position:fixed;left:18px;bottom:16px;z-index:60;font-size:13px;font-weight:700;letter-spacing:2px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}
+#count b{color:#149D92}
+#hint{position:fixed;right:38px;bottom:16px;z-index:60;font-size:12px;font-weight:600;letter-spacing:1.5px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}
+@media (max-width:640px){#hint{display:none}#dots{right:8px}}
+@media print{#bar,#dots,#count,#hint{display:none}html,body{background:#fff}.deck{height:auto;overflow:visible;scroll-snap-type:none}.stage{height:auto;padding:0;page-break-after:always}.stage .slide{transform:none;box-shadow:none}.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<main class="deck" id="deck">
+  <section class="stage"><div class="slide">
+
+  <!-- decor: soft band bottom-left -->
+  <div data-decor aria-hidden="true" style="position:absolute;left:0;bottom:0;width:660px;height:188px;background:var(--bg-soft);border-radius:0 84px 0 0;"></div>
+
+  <!-- LEFT 55% : text -->
+  <div style="position:absolute;left:64px;top:64px;width:604px;z-index:10;">
+    <span class="chip" style="font-size:20px;color:var(--primary);">BÀI THUYẾT TRÌNH NHÓM 4</span>
+
+    <h1 style="margin-top:30px;font-family:var(--font-heading);font-weight:900;font-size:var(--fs-display);line-height:1.04;letter-spacing:-0.025em;color:var(--primary);">
+      TOUR DU LỊCH<br><span style="color:var(--accent-deep);">NHA TRANG</span>
+    </h1>
+
+    <div class="accent-bar" style="margin-top:26px;"></div>
+
+    <p style="margin-top:22px;font-size:var(--fs-h3);font-weight:500;line-height:1.35;color:var(--text-muted);">Khám phá viên ngọc xanh của biển Đông</p>
+
+    <div style="margin-top:30px;display:inline-flex;align-items:center;gap:12px;background:var(--primary);color:#FFFFFF;border-radius:999px;padding:13px 30px;font-weight:700;font-size:var(--fs-small);letter-spacing:1px;">
+      <span class="material-icons" aria-hidden="true" style="font-size:24px;color:var(--accent);">event</span>
+      <span>3 NGÀY 2 ĐÊM</span>
+    </div>
+  </div>
+
+  <!-- members line -->
+  <!-- RIGHT 45% : image -->
+  <div class="img-frame" style="position:absolute;top:28px;right:28px;bottom:28px;width:540px;z-index:10;">
+    <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/28a28755af7e.jpg" alt="Toàn cảnh bãi biển Nha Trang nhìn từ trên cao">
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+
+  <!-- Header -->
+  <div>
+    <span class="chip" style="font-size:20px;color:var(--primary);">NHÓM 4 THỰC HIỆN</span>
+    <h1 style="margin-top:24px;font-family:var(--font-heading);font-weight:900;font-size:var(--fs-h1);line-height:1.1;color:var(--primary);">Thành viên nhóm</h1>
+    <div class="accent-bar" style="margin-top:18px;"></div>
+  </div>
+
+  <!-- Member grid -->
+  <div style="flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:42px;">
+
+    <!-- 01 Kỳ Anh -->
+    <div class="card-soft" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 18px;">
+      <span style="position:absolute;top:20px;right:24px;font-size:var(--fs-small);font-weight:700;color:var(--accent-deep);">01</span>
+      <div style="width:126px;height:126px;flex-shrink:0;border-radius:50%;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:var(--fs-h1);font-weight:800;color:var(--primary);line-height:1;">K</span>
+      </div>
+      <p style="margin-top:22px;font-size:30px;font-weight:800;color:var(--primary);text-align:center;white-space:nowrap;">Kỳ Anh</p>
+      <p style="margin-top:8px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Thành viên nhóm</p>
+    </div>
+
+    <!-- 02 Minh Nhật -->
+    <div class="card-soft" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 18px;">
+      <span style="position:absolute;top:20px;right:24px;font-size:var(--fs-small);font-weight:700;color:var(--accent-deep);">02</span>
+      <div style="width:126px;height:126px;flex-shrink:0;border-radius:50%;background:var(--accent-deep);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:var(--fs-h1);font-weight:800;color:#FFFFFF;line-height:1;">M</span>
+      </div>
+      <p style="margin-top:22px;font-size:30px;font-weight:800;color:var(--primary);text-align:center;white-space:nowrap;">Minh Nhật</p>
+      <p style="margin-top:8px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Thành viên nhóm</p>
+    </div>
+
+    <!-- 03 Anh Thư -->
+    <div class="card-soft" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 18px;">
+      <span style="position:absolute;top:20px;right:24px;font-size:var(--fs-small);font-weight:700;color:var(--accent-deep);">03</span>
+      <div style="width:126px;height:126px;flex-shrink:0;border-radius:50%;background:var(--accent-deep);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:var(--fs-h1);font-weight:800;color:#FFFFFF;line-height:1;">A</span>
+      </div>
+      <p style="margin-top:22px;font-size:30px;font-weight:800;color:var(--primary);text-align:center;white-space:nowrap;">Anh Thư</p>
+      <p style="margin-top:8px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Thành viên nhóm</p>
+    </div>
+
+    <!-- 04 Thanh Nguyên -->
+    <div class="card-soft" style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 18px;">
+      <span style="position:absolute;top:20px;right:24px;font-size:var(--fs-small);font-weight:700;color:var(--accent-deep);">04</span>
+      <div style="width:126px;height:126px;flex-shrink:0;border-radius:50%;background:var(--primary-soft);display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:var(--fs-h1);font-weight:800;color:var(--primary);line-height:1;">T</span>
+      </div>
+      <p style="margin-top:22px;font-size:30px;font-weight:800;color:var(--primary);text-align:center;white-space:nowrap;">Thanh Nguyên</p>
+      <p style="margin-top:8px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Thành viên nhóm</p>
+    </div>
+
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+
+  <!-- Header -->
+  <div>
+    <h1 style="font-family:var(--font-heading);font-weight:900;font-size:var(--fs-h1);line-height:1.1;color:var(--primary);">Nội dung trình bày</h1>
+    <div class="accent-bar" style="margin-top:18px;"></div>
+  </div>
+
+  <!-- Agenda rows -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;margin-top:10px;">
+
+    <!-- 01 -->
+    <div class="card" style="display:flex;align-items:center;gap:26px;padding:14px 32px;min-height:106px;">
+      <div class="num-badge" style="width:72px;height:72px;flex:none;background:var(--accent-deep);font-size:var(--fs-h2);">01</div>
+      <div>
+        <p style="font-size:var(--fs-h2);font-weight:800;line-height:1.15;color:var(--primary);">MỞ ĐẦU</p>
+        <p style="margin-top:6px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Giới thiệu điểm đến &amp; lý do chọn đề tài</p>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="card" style="display:flex;align-items:center;gap:26px;padding:14px 32px;min-height:106px;">
+      <div class="num-badge" style="width:72px;height:72px;flex:none;background:var(--accent-deep);font-size:var(--fs-h2);">02</div>
+      <div>
+        <p style="font-size:var(--fs-h2);font-weight:800;line-height:1.15;color:var(--primary);">THỰC TRẠNG DU LỊCH NHA TRANG</p>
+        <p style="margin-top:6px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Tiềm năng nổi bật &amp; thách thức hiện nay</p>
+      </div>
+    </div>
+
+    <!-- 03 (nhấn mạnh) -->
+    <div class="card-accent" style="display:flex;align-items:center;gap:26px;padding:14px 32px;min-height:106px;">
+      <div class="num-badge" style="width:72px;height:72px;flex:none;background:var(--accent-deep);font-size:var(--fs-h2);">03</div>
+      <div>
+        <p style="font-size:var(--fs-h2);font-weight:800;line-height:1.15;color:var(--primary);">THIẾT KẾ TOUR</p>
+        <p style="margin-top:6px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Lịch trình 3 ngày 2 đêm &amp; chi phí</p>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="card" style="display:flex;align-items:center;gap:26px;padding:14px 32px;min-height:106px;">
+      <div class="num-badge" style="width:72px;height:72px;flex:none;background:var(--accent-deep);font-size:var(--fs-h2);">04</div>
+      <div>
+        <p style="font-size:var(--fs-h2);font-weight:800;line-height:1.15;color:var(--primary);">KẾT LUẬN</p>
+        <p style="margin-top:6px;font-size:var(--fs-small);font-weight:500;color:var(--text-muted);">Tổng kết đề tài &amp; đề xuất</p>
+      </div>
+    </div>
+
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary);">
+
+  <!-- decor: ghost chapter number -->
+  <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-52%);font-family:var(--font-num);font-size:260px;font-weight:900;line-height:1;color:#FFFFFF;opacity:0.12;">01</div>
+
+  <!-- decor: soft accent ring -->
+  <div data-decor aria-hidden="true" style="position:absolute;right:-130px;bottom:-170px;width:420px;height:420px;border-radius:50%;border:3px solid var(--accent);opacity:0.18;"></div>
+
+  <!-- Content -->
+  <div style="position:absolute;left:96px;top:212px;z-index:10;">
+    <span style="display:inline-flex;align-items:center;padding:10px 26px;border:2px solid var(--accent);border-radius:999px;color:var(--accent);font-weight:700;font-size:20px;letter-spacing:2px;">PHẦN 01 / 04</span>
+
+    <h1 style="margin-top:34px;font-family:var(--font-heading);font-weight:900;font-size:var(--fs-display);line-height:1.05;color:#FFFFFF;">MỞ ĐẦU</h1>
+
+    <div class="accent-bar" style="margin-top:28px;"></div>
+
+    <p style="margin-top:26px;font-size:var(--fs-h3);font-weight:500;line-height:1.35;color:rgba(255,255,255,0.85);">Giới thiệu điểm đến Nha Trang và lý do chọn đề tài</p>
+  </div>
+
+  <!-- dot track -->
+  <div class="dot-track" style="position:absolute;left:96px;bottom:76px;z-index:10;">
+    <span class="active"></span>
+    <span style="background:rgba(255,255,255,0.45);"></span>
+    <span style="background:rgba(255,255,255,0.45);"></span>
+    <span style="background:rgba(255,255,255,0.45);"></span>
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide">
+
+  <!-- LEFT 52% : text -->
+  <div style="position:absolute;left:64px;top:56px;width:600px;z-index:10;">
+    <span class="chip" style="font-size:20px;color:var(--primary);">GIỚI THIỆU</span>
+
+    <h1 style="margin-top:20px;font-family:var(--font-heading);font-weight:900;font-size:var(--fs-h1);line-height:1.12;color:var(--primary);">Nha Trang<br>— viên ngọc xanh<br>của biển Đông</h1>
+
+    <div class="accent-bar" style="margin-top:18px;"></div>
+
+    <div style="margin-top:24px;display:flex;flex-direction:column;gap:20px;">
+      <div style="display:flex;align-items:center;gap:18px;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-deep);display:flex;align-items:center;justify-content:center;flex:none;">
+          <span class="material-icons" aria-hidden="true" style="font-size:26px;color:#FFFFFF;">location_on</span>
+        </div>
+        <p style="font-size:var(--fs-body);font-weight:600;line-height:1.3;color:var(--primary);">Thành phố biển tỉnh Khánh Hòa — miền Trung Việt Nam</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-deep);display:flex;align-items:center;justify-content:center;flex:none;">
+          <span class="material-icons" aria-hidden="true" style="font-size:26px;color:#FFFFFF;">waves</span>
+        </div>
+        <p style="font-size:var(--fs-body);font-weight:600;line-height:1.3;color:var(--primary);">Vịnh Nha Trang — một trong những vịnh đẹp nhất thế giới</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--accent-deep);display:flex;align-items:center;justify-content:center;flex:none;">
+          <span class="material-icons" aria-hidden="true" style="font-size:26px;color:#FFFFFF;">wb_sunny</span>
+        </div>
+        <p style="font-size:var(--fs-body);font-weight:600;line-height:1.3;color:var(--primary);">Nắng ấm quanh năm — hơn 300 ngày nắng mỗi năm</p>
+      </div>
+    </div>
+
+    <div style="margin-top:26px;">
+      <span class="chip-navy" style="font-size:20px;">Biển xanh · Cát trắng · Nắng vàng</span>
+    </div>
+  </div>
+
+  <!-- RIGHT 48% : image -->
+  <div class="img-frame" style="position:absolute;top:28px;right:28px;bottom:28px;width:548px;z-index:10;">
+    <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5fee4024041a.jpg" alt="Panorama thành phố biển Nha Trang">
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide" style="padding:64px;display:flex;flex-direction:column;">
+
+  <header style="flex:none;">
+    <h1 style="margin:0;font-family:var(--font-heading);font-size:var(--fs-h1);font-weight:900;line-height:1.12;color:var(--primary);">Lý do chọn đề tài &amp; mục tiêu</h1>
+    <div class="accent-bar" style="margin-top:18px;"></div>
+  </header>
+
+  <section style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:34px;">
+
+    <!-- Cột trái: Lý do chọn đề tài -->
+    <div class="card-soft" style="padding:34px 40px;display:flex;flex-direction:column;">
+      <div style="flex:none;">
+        <span class="chip-navy" style="font-size:var(--fs-small);">
+          <span class="material-icons" style="font-size:24px;">lightbulb</span>
+          LÝ DO CHỌN ĐỀ TÀI
+        </span>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:8px;">
+        <div class="item">
+          <span class="material-icons" style="color:var(--accent-deep);">check_circle</span>
+          <p style="color:var(--primary);">Điểm đến gần gũi, nổi tiếng bậc nhất Việt Nam</p>
+        </div>
+        <div class="item">
+          <span class="material-icons" style="color:var(--accent-deep);">check_circle</span>
+          <p style="color:var(--primary);">Chi phí hợp lý với học sinh — sinh viên</p>
+        </div>
+        <div class="item">
+          <span class="material-icons" style="color:var(--accent-deep);">check_circle</span>
+          <p style="color:var(--primary);">Nhiều trải nghiệm: biển đảo, văn hóa, ẩm thực</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cột phải: Mục tiêu -->
+    <div class="card-navy" style="padding:34px 40px;display:flex;flex-direction:column;">
+      <div style="flex:none;">
+        <span style="display:inline-flex;align-items:center;gap:10px;padding:9px 24px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-weight:700;letter-spacing:2px;font-size:var(--fs-small);">
+          <span class="material-icons" style="font-size:24px;">flag</span>
+          MỤC TIÊU
+        </span>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:8px;">
+        <div class="item" style="border-top:none;">
+          <span class="material-icons" style="color:var(--accent);">check_circle</span>
+          <p style="color:#FFFFFF;">Thiết kế tour 3N2Đ hợp lý, chi tiết</p>
+        </div>
+        <div class="item">
+          <span class="material-icons" style="color:var(--accent);">check_circle</span>
+          <p style="color:#FFFFFF;">Rèn kỹ năng lập kế hoạch du lịch</p>
+        </div>
+        <div class="item">
+          <span class="material-icons" style="color:var(--accent);">check_circle</span>
+          <p style="color:#FFFFFF;">Rèn kỹ năng làm việc nhóm</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--bg-soft);">
+
+  <!-- Số chương khổng lồ mờ, góc phải (trang trí) -->
+  <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);z-index:1;font-family:var(--font-heading);font-weight:900;font-size:260px;line-height:1;color:var(--primary);opacity:0.08;user-select:none;">02</div>
+
+  <!-- Khối nội dung căn giữa dọc -->
+  <div style="position:absolute;left:72px;top:50%;transform:translateY(-50%);z-index:10;max-width:1030px;">
+    <span class="chip" style="font-size:var(--fs-small);color:var(--primary);">PHẦN 02 / 04</span>
+    <h1 style="margin:30px 0 0;font-family:var(--font-heading);font-size:var(--fs-display);font-weight:900;line-height:1.08;letter-spacing:-1px;color:var(--primary);">THỰC TRẠNG<br>DU LỊCH NHA TRANG</h1>
+    <div class="accent-bar" style="margin-top:30px;"></div>
+    <p style="margin:26px 0 0;font-size:var(--fs-h3);font-weight:500;line-height:1.4;color:var(--text-muted);">Tiềm năng nổi bật và những thách thức hiện nay</p>
+  </div>
+
+  <!-- Dot-track: chấm 2 active -->
+  <div class="dot-track" style="position:absolute;left:72px;bottom:64px;z-index:10;">
+    <span></span><span class="active"></span><span></span><span></span>
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
+
+  <header style="flex:none;">
+    <span class="chip-navy" style="font-size:var(--fs-small);">TIỀM NĂNG</span>
+    <h1 style="margin:20px 0 0;font-family:var(--font-heading);font-size:var(--fs-h1);font-weight:900;line-height:1.12;color:var(--primary);">Điểm đến hút khách bậc nhất Việt Nam</h1>
+    <div class="accent-bar" style="margin-top:18px;"></div>
+  </header>
+
+  <section style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:34px;">
+
+    <!-- Thẻ 1: số liệu hero -->
+    <div class="card-accent stat-card" style="background:#FFFFFF;">
+      <div class="icon-circle" style="background:var(--accent-soft);">
+        <span class="material-icons" style="font-size:34px;color:var(--accent-deep);">trending_up</span>
+      </div>
+      <div class="stat-num" style="color:var(--accent-deep);">23,7 triệu</div>
+      <p class="stat-label">lượt khách du lịch tổng</p>
+    </div>
+
+    <!-- Thẻ 2 -->
+    <div class="card-soft stat-card">
+      <div class="icon-circle" style="background:var(--primary-soft);">
+        <span class="material-icons" style="font-size:34px;color:var(--primary);">public</span>
+      </div>
+      <div class="stat-num" style="color:var(--primary);"><span style="font-size:26px;font-weight:800;margin-right:6px;">hơn</span>9,4 triệu</div>
+      <p class="stat-label">lượt khách quốc tế</p>
+    </div>
+
+    <!-- Thẻ 3 -->
+    <div class="card-soft stat-card">
+      <div class="icon-circle" style="background:var(--primary-soft);">
+        <span class="material-icons" style="font-size:34px;color:var(--primary);">payments</span>
+      </div>
+      <div class="stat-num" style="color:var(--primary);"><span style="font-size:26px;font-weight:800;margin-right:6px;">hơn</span>80.200 tỷ</div>
+      <p class="stat-label">đồng doanh thu du lịch dự kiến</p>
+    </div>
+
+  </section>
+
+  <footer style="flex:none;margin-top:20px;">
+    <p style="margin:0;font-size:var(--fs-micro);color:var(--text-muted);">Lưu ý: Đây là số liệu dự báo cho cả năm 2026, chưa phải kết quả tổng kết cuối năm.</p>
+  </footer>
+
+</div></section>
+  <section class="stage"><div class="slide" style="padding:60px 64px;display:flex;flex-direction:column;">
+
+  <header style="flex:none;">
+    <span class="chip-navy" style="font-size:var(--fs-small);">THÁCH THỨC</span>
+    <h1 style="margin:20px 0 0;font-family:var(--font-heading);font-size:var(--fs-h1);font-weight:900;line-height:1.12;color:var(--primary);">Vấn đề cần lưu ý</h1>
+    <div class="accent-bar" style="margin-top:18px;"></div>
+  </header>
+
+  <section style="flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:24px;margin-top:32px;">
+
+    <div class="card challenge-card">
+      <div class="challenge-icon"><span class="material-icons">groups</span></div>
+      <div>
+        <h3 class="challenge-title">Mùa cao điểm quá tải</h3>
+        <p class="challenge-desc">Đông khách vào hè và dịp lễ</p>
+      </div>
+    </div>
+
+    <div class="card challenge-card">
+      <div class="challenge-icon"><span class="material-icons">compare_arrows</span></div>
+      <div>
+        <h3 class="challenge-title">Cạnh tranh mạnh</h3>
+        <p class="challenge-desc">Nhiều điểm biển mới nổi lên</p>
+      </div>
+    </div>
+
+    <div class="card challenge-card">
+      <div class="challenge-icon"><span class="material-icons">payments</span></div>
+      <div>
+        <h3 class="challenge-title">Giá dịch vụ biến động</h3>
+        <p class="challenge-desc">Tăng cao vào mùa du lịch</p>
+      </div>
+    </div>
+
+    <div class="card challenge-card">
+      <div class="challenge-icon"><span class="material-icons">category</span></div>
+      <div>
+        <h3 class="challenge-title">Sản phẩm chưa đa dạng</h3>
+        <p class="challenge-desc">Cần làm mới trải nghiệm</p>
+      </div>
+    </div>
+
+  </section>
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary);">
+
+  <!-- Số chương khổng lồ mờ, góc phải (trang trí) -->
+  <div data-decor aria-hidden="true" style="position:absolute;right:44px;top:50%;transform:translateY(-50%);z-index:1;font-family:var(--font-heading);font-weight:900;font-size:260px;line-height:1;color:#FFFFFF;opacity:0.12;user-select:none;">03</div>
+
+  <!-- Khối nội dung căn giữa dọc -->
+  <div style="position:absolute;left:72px;top:50%;transform:translateY(-50%);z-index:10;max-width:1030px;">
+    <span style="display:inline-flex;align-items:center;padding:9px 24px;border-radius:999px;border:2px solid var(--accent);color:var(--accent);font-weight:700;letter-spacing:2px;font-size:var(--fs-small);">PHẦN 03 / 04</span>
+    <h1 style="margin:30px 0 0;font-family:var(--font-heading);font-size:var(--fs-display);font-weight:900;line-height:1.05;letter-spacing:-1px;color:#FFFFFF;">THIẾT KẾ TOUR</h1>
+    <p style="margin:16px 0 0;font-family:var(--font-heading);font-size:var(--fs-h2);font-weight:700;letter-spacing:3px;color:var(--accent);">3 NGÀY 2 ĐÊM</p>
+    <div class="accent-bar" style="margin-top:28px;"></div>
+    <p style="margin:26px 0 0;font-size:var(--fs-h3);font-weight:500;line-height:1.4;color:rgba(255,255,255,0.85);">Lịch trình — Điểm đến — Chi phí</p>
+  </div>
+
+  <!-- Dot-track: chấm 3 active -->
+  <div class="dot-track dt-navy" style="position:absolute;left:72px;bottom:64px;z-index:10;">
+    <span></span><span></span><span class="active"></span><span></span>
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
+
+  <!-- Header -->
+  <div class="shrink-0">
+    <span class="chip" style="font-size:var(--fs-micro);">TỔNG QUAN</span>
+    <h1 style="font-family:var(--font-heading); font-size:var(--fs-h1); font-weight:800; line-height:1.1; color:var(--primary); margin-top:18px;">Thông tin tour</h1>
+    <div class="accent-bar" style="margin-top:16px;"></div>
+  </div>
+
+  <!-- Grid 2x2 -->
+  <div class="grid grid-cols-2 gap-6 flex-1 min-h-0" style="margin-top:30px;">
+
+    <!-- Card 1: Thời gian -->
+    <div class="card-soft flex items-center" style="padding:0 34px; gap:24px;">
+      <div class="flex items-center justify-center rounded-full shrink-0" style="width:72px; height:72px; background:var(--accent-soft);">
+        <span class="material-icons" style="font-size:36px; color:var(--accent-deep);">schedule</span>
+      </div>
+      <div>
+        <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:2px; color:var(--text-muted);">THỜI GIAN</div>
+        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">3 ngày 2 đêm</div>
+      </div>
+    </div>
+
+    <!-- Card 2: Di chuyển -->
+    <div class="card-soft flex items-center" style="padding:0 34px; gap:24px;">
+      <div class="flex items-center justify-center rounded-full shrink-0" style="width:72px; height:72px; background:var(--accent-soft);">
+        <span class="material-icons" style="font-size:36px; color:var(--accent-deep);">directions_bus</span>
+      </div>
+      <div>
+        <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:2px; color:var(--text-muted);">DI CHUYỂN</div>
+        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">Xe giường nằm · Máy bay</div>
+      </div>
+    </div>
+
+    <!-- Card 3: Đối tượng -->
+    <div class="card-soft flex items-center" style="padding:0 34px; gap:24px;">
+      <div class="flex items-center justify-center rounded-full shrink-0" style="width:72px; height:72px; background:var(--accent-soft);">
+        <span class="material-icons" style="font-size:36px; color:var(--accent-deep);">groups</span>
+      </div>
+      <div>
+        <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:2px; color:var(--text-muted);">ĐỐI TƯỢNG</div>
+        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">Học sinh · Sinh viên · Nhóm bạn</div>
+      </div>
+    </div>
+
+    <!-- Card 4: Trải nghiệm -->
+    <div class="card-soft flex items-center" style="padding:0 34px; gap:24px;">
+      <div class="flex items-center justify-center rounded-full shrink-0" style="width:72px; height:72px; background:var(--accent-soft);">
+        <span class="material-icons" style="font-size:36px; color:var(--accent-deep);">beach_access</span>
+      </div>
+      <div>
+        <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:2px; color:var(--text-muted);">TRẢI NGHIỆM</div>
+        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">Biển đảo · Văn hóa · Ẩm thực</div>
+      </div>
+    </div>
+
+  </div>
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:52px 64px;">
+
+  <!-- Header -->
+  <div class="shrink-0">
+    <span class="chip" style="font-size:var(--fs-micro);">LỊCH TRÌNH</span>
+    <h1 style="font-family:var(--font-heading); font-size:var(--fs-h1); font-weight:800; line-height:1.1; color:var(--primary); margin-top:16px;">Hành trình 3 ngày 2 đêm</h1>
+    <div class="accent-bar" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- 3 cột -->
+  <div class="grid grid-cols-3 gap-6 flex-1 min-h-0" style="margin-top:24px;">
+
+    <!-- Ngày 1 -->
+    <div class="card flex flex-col" style="padding:16px;">
+      <div class="img-frame shrink-0" style="height:130px; border-radius:14px; box-shadow:0 8px 18px rgba(10,61,98,0.14);">
+        <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5de2c823e280.jpeg" alt="Khám phá thành phố Nha Trang">
+      </div>
+      <span class="chip-navy day-chip self-start" style="margin-top:12px;">NGÀY 1</span>
+      <h3 style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); margin-top:10px; line-height:1.15;">KHÁM PHÁ THÀNH PHỐ</h3>
+      <ul class="flex flex-col" style="margin-top:10px; gap:8px; list-style:none; padding:0; margin-bottom:0;">
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Đón đoàn, nhận phòng</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Tháp Bà Ponagar — Chùa Long Sơn</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Tắm biển · Hải sản tối</span></li>
+      </ul>
+    </div>
+
+    <!-- Ngày 2 -->
+    <div class="card flex flex-col" style="padding:16px;">
+      <div class="img-frame shrink-0" style="height:130px; border-radius:14px; box-shadow:0 8px 18px rgba(10,61,98,0.14);">
+        <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/23bce2b858b4.jpg" alt="Du thuyền đảo Nha Trang">
+      </div>
+      <span class="chip-navy day-chip self-start" style="margin-top:12px;">NGÀY 2</span>
+      <h3 style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); margin-top:10px; line-height:1.15;">DU THUYỀN ĐẢO</h3>
+      <ul class="flex flex-col" style="margin-top:10px; gap:8px; list-style:none; padding:0; margin-bottom:0;">
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Hòn Mun — ngắm san hô</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Hòn Tằm — thể thao biển</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Chiều: Vinpearl · phố đi bộ</span></li>
+      </ul>
+    </div>
+
+    <!-- Ngày 3 -->
+    <div class="card flex flex-col" style="padding:16px;">
+      <div class="img-frame shrink-0" style="height:130px; border-radius:14px; box-shadow:0 8px 18px rgba(10,61,98,0.14);">
+        <img class="img-cover" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/91c437c1ca17.png" alt="Biển Nha Trang — tạm biệt">
+      </div>
+      <span class="chip-navy day-chip self-start" style="margin-top:12px;">NGÀY 3</span>
+      <h3 style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); margin-top:10px; line-height:1.15;">BIỂN &amp; TẠM BIỆT</h3>
+      <ul class="flex flex-col" style="margin-top:10px; gap:8px; list-style:none; padding:0; margin-bottom:0;">
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Bãi Dài — biển hoang sơ</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Chợ Đầm — mua đặc sản</span></li>
+        <li class="tl-item"><span class="material-icons">chevron_right</span><span class="t">Tiễn đoàn, kết thúc tour</span></li>
+      </ul>
+    </div>
+
+  </div>
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
+
+  <!-- Header -->
+  <div class="shrink-0">
+    <span class="chip" style="font-size:var(--fs-micro);">CHI PHÍ</span>
+    <h1 style="font-family:var(--font-heading); font-size:var(--fs-h1); font-weight:800; line-height:1.1; color:var(--primary); margin-top:16px;">Chi phí dự trù / 1 người</h1>
+    <div class="accent-bar" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- Nội dung -->
+  <div class="flex flex-1 min-h-0" style="margin-top:24px; gap:24px;">
+
+    <!-- Trái: 5 hàng chi phí -->
+    <div class="flex flex-col" style="width:58%; gap:12px;">
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">directions_bus</span></div>
+        <div class="cost-name">Vận chuyển</div>
+        <div class="cost-money">900.000đ</div>
+      </div>
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">hotel</span></div>
+        <div class="cost-name">Lưu trú 2 đêm</div>
+        <div class="cost-money">700.000đ</div>
+      </div>
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">restaurant</span></div>
+        <div class="cost-name">Ăn uống</div>
+        <div class="cost-money">500.000đ</div>
+      </div>
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">confirmation_number</span></div>
+        <div class="cost-name">Vé tham quan</div>
+        <div class="cost-money">300.000đ</div>
+      </div>
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">savings</span></div>
+        <div class="cost-name">Dự phòng</div>
+        <div class="cost-money">100.000đ</div>
+      </div>
+    </div>
+
+    <!-- Phải: tổng chi phí -->
+    <div class="card-navy flex flex-col items-center justify-center text-center" style="flex:1; padding:32px;">
+      <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:3px; color:rgba(255,255,255,0.78);">TỔNG CHI PHÍ DỰ KIẾN</div>
+      <div style="font-family:var(--font-heading); font-size:60px; font-weight:900; color:#4DE3D6; line-height:1.1; margin-top:18px;">2.500.000đ</div>
+      <div style="width:56px; height:6px; border-radius:999px; background:var(--accent); margin-top:22px;"></div>
+      <div style="font-size:var(--fs-small); color:rgba(255,255,255,0.8); line-height:1.4; margin-top:18px; max-width:340px;">Mức phí phù hợp nhóm học sinh — sinh viên</div>
+    </div>
+
+  </div>
+
+  <!-- Ghi chú -->
+  <div class="shrink-0 flex items-center" style="margin-top:12px; gap:6px;">
+    <span class="material-icons" style="font-size:18px; color:var(--text-muted);">info</span>
+    <span style="font-size:var(--fs-micro); color:var(--text-muted);">Số liệu là dự toán tham khảo của nhóm</span>
+  </div>
+
+</div></section>
+  <section class="stage"><div class="slide flex flex-col" style="padding:56px 64px;">
+
+  <!-- Header -->
+  <div class="shrink-0">
+    <span class="chip" style="font-size:var(--fs-micro);">PHẦN 04 / 04 — KẾT LUẬN</span>
+    <h1 style="font-family:var(--font-heading); font-size:var(--fs-h1); font-weight:800; line-height:1.1; color:var(--primary); margin-top:16px;">Những điều rút ra</h1>
+    <div class="accent-bar" style="margin-top:14px;"></div>
+  </div>
+
+  <!-- 3 hàng kết luận -->
+  <div class="flex flex-col flex-1 min-h-0" style="margin-top:28px; gap:18px;">
+
+    <div class="card-soft sum-row">
+      <div class="sum-icon"><span class="material-icons">location_city</span></div>
+      <p class="sum-text" style="margin:0;">Nha Trang: điểm đến giàu tiềm năng, hút hàng chục triệu lượt khách mỗi năm</p>
+    </div>
+
+    <div class="card-soft sum-row">
+      <div class="sum-icon"><span class="material-icons">route</span></div>
+      <p class="sum-text" style="margin:0;">Tour 3N2Đ: lịch trình hợp lý, chi phí chỉ ~2,5 triệu đồng/người</p>
+    </div>
+
+    <div class="card-accent sum-row">
+      <div class="sum-icon"><span class="material-icons">diversity_3</span></div>
+      <p class="sum-text" style="margin:0;">Bài học: lập kế hoạch chi tiết và làm việc nhóm hiệu quả</p>
+    </div>
+
+  </div>
+</div></section>
+  <section class="stage"><div class="slide" style="background:var(--primary); padding:64px;">
+
+  <!-- Trang trí: hình tròn mờ màu accent ở góc -->
+  <div class="deco" data-decor aria-hidden="true" style="width:460px; height:460px; top:-170px; right:-150px; background:var(--accent); opacity:0.16;"></div>
+  <div class="deco" data-decor aria-hidden="true" style="width:120px; height:120px; top:110px; right:300px; background:var(--accent); opacity:0.10;"></div>
+  <div class="deco" data-decor aria-hidden="true" style="width:340px; height:340px; bottom:-140px; left:-120px; background:var(--accent); opacity:0.13;"></div>
+  <div class="deco" data-decor aria-hidden="true" style="width:90px; height:90px; bottom:120px; left:280px; border:3px solid var(--accent); opacity:0.22; background:transparent;"></div>
+
+  <!-- Nội dung căn giữa -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center" style="height:100%;">
+    <span class="chip-qa">Q &amp; A</span>
+    <h1 style="font-family:var(--font-heading); font-size:var(--fs-display); font-weight:900; color:#FFFFFF; line-height:1.12; margin-top:30px;">CẢM ƠN<br>THẦY CÔ VÀ CÁC BẠN!</h1>
+    <div class="accent-bar" style="margin-top:26px;"></div>
+    <p style="font-size:var(--fs-h3); font-weight:500; color:rgba(255,255,255,0.85); margin-top:24px;">Rất mong nhận được câu hỏi và góp ý</p>
+    <p style="font-size:var(--fs-small); color:rgba(255,255,255,0.7); margin-top:44px;">Nhóm 4 thực hiện: Kỳ Anh · Minh Nhật · Anh Thư · Thanh Nguyên</p>
+  </div>
+
+</div></section>
+</main>
+<nav id="dots" aria-label="Điều hướng slide">
+<button class="dotp" data-i="0" aria-label="Slide 1"></button>
+<button class="dotp" data-i="1" aria-label="Slide 2"></button>
+<button class="dotp" data-i="2" aria-label="Slide 3"></button>
+<button class="dotp" data-i="3" aria-label="Slide 4"></button>
+<button class="dotp" data-i="4" aria-label="Slide 5"></button>
+<button class="dotp" data-i="5" aria-label="Slide 6"></button>
+<button class="dotp" data-i="6" aria-label="Slide 7"></button>
+<button class="dotp" data-i="7" aria-label="Slide 8"></button>
+<button class="dotp" data-i="8" aria-label="Slide 9"></button>
+<button class="dotp" data-i="9" aria-label="Slide 10"></button>
+<button class="dotp" data-i="10" aria-label="Slide 11"></button>
+<button class="dotp" data-i="11" aria-label="Slide 12"></button>
+<button class="dotp" data-i="12" aria-label="Slide 13"></button>
+<button class="dotp" data-i="13" aria-label="Slide 14"></button>
+<button class="dotp" data-i="14" aria-label="Slide 15"></button>
+</nav>
+<div id="count"><b>01</b> / 15</div>
+<div id="hint">↑ ↓ CHUYỂN SLIDE · F TOÀN MÀN HÌNH</div>
+<script>
+(function () {
+  var deck = document.getElementById('deck');
+  var stages = [].slice.call(document.querySelectorAll('.stage'));
+  var dots = [].slice.call(document.querySelectorAll('.dotp'));
+  var bar = document.getElementById('bar');
+  var count = document.getElementById('count');
+  var N = stages.length, cur = 0;
+
+  function fit() {
+    var s = Math.min(window.innerWidth / 1280, window.innerHeight / 720) * 0.97;
+    document.querySelectorAll('.stage .slide').forEach(function (el) {
+      el.style.setProperty('--s', s);
+    });
+  }
+  window.addEventListener('resize', fit); fit();
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function setActive(i) {
+    cur = Math.max(0, Math.min(N - 1, i));
+    dots.forEach(function (d, k) { d.classList.toggle('on', k === cur); });
+    count.innerHTML = '<b>' + pad(cur + 1) + '</b> / ' + N;
+    bar.style.width = ((cur + 1) / N * 100) + '%';
+  }
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-live'); setActive(stages.indexOf(e.target)); }
+      else e.target.classList.remove('is-live');
+    });
+  }, { root: deck, threshold: 0.55 });
+  stages.forEach(function (st) { io.observe(st); });
+
+  function go(i) { stages[Math.max(0, Math.min(N - 1, i))].scrollIntoView({ behavior: 'smooth' }); }
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { go(+d.dataset.i); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(N - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    }
+  });
+
+  /* ---------- hiệu ứng nhảy chữ: tách ký tự cho tiêu đề/chip/số, fade cho đoạn ---------- */
+  var TITLE_SEL = 'h1, h2, h3, .stat-num, .chip, .chip-navy, .chip-qa, .num-badge, .day-chip';
+  var FADE_SEL = 'p, li, .cost-name, .cost-money';
+  function graphemes(str) {
+    if (window.Intl && Intl.Segmenter) {
+      var sg = new Intl.Segmenter('vi', { granularity: 'grapheme' });
+      return Array.from(sg.segment(str), function (s) { return s.segment; });
+    }
+    return Array.from(str);
+  }
+  function inFlex(node) {
+    var d = getComputedStyle(node.parentNode).display;
+    return d.indexOf('flex') > -1 || d.indexOf('grid') > -1;
+  }
+  function splitChars(el) {
+    var i = 0;
+    function walk(node) {
+      [].slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          function charSpan(g) {
+            if (/^\s+$/.test(g)) return document.createTextNode(g);
+            var c = document.createElement('span');
+            c.className = 'jl'; c.textContent = g;
+            c.style.setProperty('--i', Math.min(i++, 34));
+            return c;
+          }
+          if (inFlex(ch)) {
+            var w0 = document.createElement('span'); w0.className = 'jw';
+            graphemes(ch.nodeValue).forEach(function (g) { w0.appendChild(charSpan(g)); });
+            frag.appendChild(w0);
+          } else {
+            ch.nodeValue.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              var w = document.createElement('span'); w.className = 'jw';
+              graphemes(part).forEach(function (g) { w.appendChild(charSpan(g)); });
+              frag.appendChild(w);
+            });
+          }
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1 && !ch.classList.contains('material-icons')) walk(ch);
+      });
+    }
+    walk(el);
+  }
+  document.querySelectorAll('.slide').forEach(function (sl) {
+    sl.querySelectorAll(TITLE_SEL).forEach(splitChars);
+    var fi = 0;
+    sl.querySelectorAll(FADE_SEL).forEach(function (el) {
+      el.classList.add('jf');
+      el.style.setProperty('--d', Math.min(fi++ * 80, 800));
+    });
+  });
+
+  setActive(0);
+})();
+</script>
+</body>
+</html>
