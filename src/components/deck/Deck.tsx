@@ -270,15 +270,6 @@ export default function Deck() {
         <span className="mx-1.5 text-[0.7em] opacity-70">/ {SLIDES.length}</span>
       </div>
 
-      {/* keyboard hint */}
-      <div
-        className={`fs-hint fixed bottom-5 right-[max(1.25rem,4.5vw)] z-[85] hidden text-[0.75rem] font-semibold uppercase tracking-[0.16em] lg:block ${
-          darkSlide ? "text-white/75" : "text-[#56718a]"
-        }`}
-      >
-        ↑ ↓ điều hướng · F / F11 toàn màn hình
-      </div>
-
       {/* grain */}
       <div className="grain" aria-hidden="true" />
 

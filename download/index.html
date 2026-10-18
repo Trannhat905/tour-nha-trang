@@ -232,9 +232,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 .dotp.on{background:#2EC4B6;transform:scale(1.45);box-shadow:0 0 0 3px rgba(255,255,255,.65)}
 #count{position:fixed;left:18px;bottom:16px;z-index:60;font-size:13px;font-weight:700;letter-spacing:2px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}
 #count b{color:#149D92}
-#hint{position:fixed;right:38px;bottom:16px;z-index:60;font-size:12px;font-weight:600;letter-spacing:1.5px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}
-@media (max-width:640px){#hint{display:none}#dots{right:8px}}
-@media print{#bar,#dots,#count,#hint{display:none}html,body{background:#fff}.deck{height:auto;overflow:visible;scroll-snap-type:none}.stage{height:auto;padding:0;page-break-after:always}.stage .slide{transform:none;box-shadow:none}.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
+@media (max-width:640px){#dots{right:8px}}
+@media print{#bar,#dots,#count{display:none}html,body{background:#fff}.deck{height:auto;overflow:visible;scroll-snap-type:none}.stage{height:auto;padding:0;page-break-after:always}.stage .slide{transform:none;box-shadow:none}.jl,.jf{opacity:1!important;transform:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -672,7 +671,8 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
       </div>
       <div>
         <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:2px; color:var(--text-muted);">ĐỐI TƯỢNG</div>
-        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">Học sinh · Sinh viên · Nhóm bạn</div>
+        <div style="font-family:var(--font-heading); font-size:var(--fs-h3); font-weight:800; color:var(--primary); line-height:1.25; margin-top:6px;">Học sinh – SV · Gia đình trẻ</div>
+        <div style="font-size:var(--fs-micro); font-weight:600; color:var(--text-muted); margin-top:6px;">Đoàn 20–30 khách — giá theo đoàn</div>
       </div>
     </div>
 
@@ -688,6 +688,13 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
     </div>
 
   </div>
+
+  <!-- Dải lý do thiết kế -->
+  <div class="shrink-0 flex items-center" style="margin-top:20px; gap:14px; background:var(--accent-soft); border:1px solid rgba(46,196,182,0.45); border-radius:16px; padding:14px 22px;">
+    <span class="material-icons" style="font-size:26px; color:var(--accent-deep);">lightbulb</span>
+    <p style="font-size:var(--fs-small); font-weight:600; color:var(--primary); line-height:1.4; margin:0;">Thiết kế riêng cho học sinh – sinh viên & gia đình trẻ: đi đoàn 20–30 khách nên giá tốt, lịch trình gọn, cân bằng trải nghiệm – chi phí.</p>
+  </div>
+
 </div></section>
   <section class="stage"><div class="slide flex flex-col" style="padding:52px 64px;">
 
@@ -757,41 +764,47 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
   <!-- Nội dung -->
   <div class="flex flex-1 min-h-0" style="margin-top:24px; gap:24px;">
 
-    <!-- Trái: 5 hàng chi phí -->
-    <div class="flex flex-col" style="width:58%; gap:12px;">
+    <!-- Trái: 6 hàng chi phí -->
+    <div class="flex flex-col" style="width:58%; gap:10px;">
       <div class="card-soft cost-row">
         <div class="cost-icon"><span class="material-icons">directions_bus</span></div>
-        <div class="cost-name">Vận chuyển</div>
+        <div class="cost-name">Vận chuyển khứ hồi</div>
         <div class="cost-money">900.000đ</div>
       </div>
       <div class="card-soft cost-row">
-        <div class="cost-icon"><span class="material-icons">hotel</span></div>
-        <div class="cost-name">Lưu trú 2 đêm</div>
-        <div class="cost-money">700.000đ</div>
+        <div class="cost-icon"><span class="material-icons">confirmation_number</span></div>
+        <div class="cost-name">Vé VinWonders cả ngày</div>
+        <div class="cost-money">1.000.000đ</div>
       </div>
       <div class="card-soft cost-row">
-        <div class="cost-icon"><span class="material-icons">restaurant</span></div>
-        <div class="cost-name">Ăn uống</div>
+        <div class="cost-icon"><span class="material-icons">waves</span></div>
+        <div class="cost-name">Tour 3 đảo cano (gồm trưa)</div>
+        <div class="cost-money">850.000đ</div>
+      </div>
+      <div class="card-soft cost-row">
+        <div class="cost-icon"><span class="material-icons">hotel</span></div>
+        <div class="cost-name">Lưu trú 2 đêm — KS 2–3★</div>
         <div class="cost-money">500.000đ</div>
       </div>
       <div class="card-soft cost-row">
-        <div class="cost-icon"><span class="material-icons">confirmation_number</span></div>
-        <div class="cost-name">Vé tham quan</div>
-        <div class="cost-money">300.000đ</div>
+        <div class="cost-icon"><span class="material-icons">restaurant</span></div>
+        <div class="cost-name">Ăn uống & vé tham quan</div>
+        <div class="cost-money">750.000đ</div>
       </div>
       <div class="card-soft cost-row">
         <div class="cost-icon"><span class="material-icons">savings</span></div>
-        <div class="cost-name">Dự phòng</div>
-        <div class="cost-money">100.000đ</div>
+        <div class="cost-name">Dự phòng phát sinh</div>
+        <div class="cost-money">200.000đ</div>
       </div>
     </div>
 
-    <!-- Phải: tổng chi phí -->
-    <div class="card-navy flex flex-col items-center justify-center text-center" style="flex:1; padding:32px;">
+    <!-- Phải: tổng chi phí + giá đã bao gồm -->
+    <div class="card-navy flex flex-col items-center justify-center text-center" style="flex:1; padding:26px 22px;">
       <div style="font-size:var(--fs-small); font-weight:700; letter-spacing:3px; color:rgba(255,255,255,0.78);">TỔNG CHI PHÍ DỰ KIẾN</div>
-      <div style="font-family:var(--font-heading); font-size:60px; font-weight:900; color:#4DE3D6; line-height:1.1; margin-top:18px;">2.500.000đ</div>
-      <div style="width:56px; height:6px; border-radius:999px; background:var(--accent); margin-top:22px;"></div>
-      <div style="font-size:var(--fs-small); color:rgba(255,255,255,0.8); line-height:1.4; margin-top:18px; max-width:340px;">Mức phí phù hợp nhóm học sinh — sinh viên</div>
+      <div style="font-family:var(--font-heading); font-size:46px; font-weight:900; color:#4DE3D6; line-height:1.1; margin-top:14px;">4.200.000đ</div>
+      <div style="width:56px; height:6px; border-radius:999px; background:var(--accent); margin-top:16px;"></div>
+      <div style="font-size:var(--fs-micro); font-weight:800; letter-spacing:2px; color:#4DE3D6; margin-top:16px;">GIÁ ĐÃ BAO GỒM</div>
+      <div style="font-size:var(--fs-micro); color:rgba(255,255,255,0.85); line-height:1.55; margin-top:6px; max-width:330px;">Vé vào cửa · Cano/tàu đảo · Xe đưa đón · Khách sạn · Hướng dẫn viên</div>
     </div>
 
   </div>
@@ -799,7 +812,7 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
   <!-- Ghi chú -->
   <div class="shrink-0 flex items-center" style="margin-top:12px; gap:6px;">
     <span class="material-icons" style="font-size:18px; color:var(--text-muted);">info</span>
-    <span style="font-size:var(--fs-micro); color:var(--text-muted);">Số liệu là dự toán tham khảo của nhóm</span>
+    <span style="font-size:var(--fs-micro); color:var(--text-muted);">Giá tham khảo theo bảng giá công khai 2025–2026 (VinWonders, tour đảo, khách sạn) — thay đổi theo mùa &amp; ưu đãi đoàn</span>
   </div>
 
 </div></section>
@@ -822,7 +835,7 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 
     <div class="card-soft sum-row">
       <div class="sum-icon"><span class="material-icons">route</span></div>
-      <p class="sum-text" style="margin:0;">Tour 3N2Đ: lịch trình hợp lý, chi phí chỉ ~2,5 triệu đồng/người</p>
+      <p class="sum-text" style="margin:0;">Tour 3N2Đ: hành trình đặc trưng — trọn gói ~4,2 triệu đồng/người, minh bạch từng khoản</p>
     </div>
 
     <div class="card-accent sum-row">
@@ -869,7 +882,6 @@ html,body{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Viet
 <button class="dotp" data-i="14" aria-label="Slide 15"></button>
 </nav>
 <div id="count"><b>01</b> / 15</div>
-<div id="hint">↑ ↓ CHUYỂN SLIDE · F TOÀN MÀN HÌNH</div>
 <script>
 (function () {
   var deck = document.getElementById('deck');

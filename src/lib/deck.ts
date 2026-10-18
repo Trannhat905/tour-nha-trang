@@ -49,10 +49,10 @@ export const CHALLENGES = [
   { icon: "grid", t: "Sản phẩm chưa đa dạng", d: "Cần làm mới trải nghiệm" },
 ];
 
-export const OVERVIEW = [
+export const OVERVIEW: { icon: string; l: string; v: string; d?: string }[] = [
   { icon: "clock", l: "THỜI GIAN", v: "3 ngày 2 đêm" },
   { icon: "bus", l: "DI CHUYỂN", v: "Xe giường nằm · Máy bay" },
-  { icon: "team", l: "ĐỐI TƯỢNG", v: "Học sinh · Sinh viên · Nhóm bạn" },
+  { icon: "team", l: "ĐỐI TƯỢNG", v: "Học sinh – SV · Gia đình trẻ", d: "Đoàn 20–30 khách — giá theo đoàn" },
   { icon: "umbrella", l: "TRẢI NGHIỆM", v: "Biển đảo · Văn hóa · Ẩm thực" },
 ];
 
@@ -81,15 +81,22 @@ export const DAYS = [
 ];
 
 export const COSTS = [
-  { icon: "bus", t: "Vận chuyển", v: "900.000đ" },
-  { icon: "hotel", t: "Lưu trú 2 đêm", v: "700.000đ" },
-  { icon: "food", t: "Ăn uống", v: "500.000đ" },
-  { icon: "ticket", t: "Vé tham quan", v: "300.000đ" },
-  { icon: "save", t: "Dự phòng", v: "100.000đ" },
+  { icon: "bus", t: "Vận chuyển khứ hồi", v: "900.000đ" },
+  { icon: "ticket", t: "Vé VinWonders cả ngày", v: "1.000.000đ" },
+  { icon: "waves", t: "Tour 3 đảo cano (gồm trưa)", v: "850.000đ" },
+  { icon: "hotel", t: "Lưu trú 2 đêm — KS 2–3★", v: "500.000đ" },
+  { icon: "food", t: "Ăn uống & vé tham quan", v: "750.000đ" },
+  { icon: "save", t: "Dự phòng phát sinh", v: "200.000đ" },
 ];
+
+export const COST_INCLUDES =
+  "Vé vào cửa · Cano/tàu đảo · Xe đưa đón · Khách sạn · Hướng dẫn viên";
+
+export const COST_NOTE =
+  "Giá tham khảo theo bảng giá công khai 2025–2026 (VinWonders, tour đảo, khách sạn) — có thể thay đổi theo mùa và ưu đãi đoàn.";
 
 export const CONCLUSIONS = [
   { icon: "city", t: "Nha Trang: điểm đến giàu tiềm năng, hút hàng chục triệu lượt khách mỗi năm", hot: false },
-  { icon: "route", t: "Tour 3N2Đ: lịch trình hợp lý, chi phí chỉ ~2,5 triệu đồng/người", hot: true },
+  { icon: "route", t: "Tour 3N2Đ: hành trình đặc trưng — trọn gói ~4,2 triệu đồng/người, minh bạch từng khoản", hot: true },
   { icon: "heart", t: "Bài học: lập kế hoạch chi tiết và làm việc nhóm hiệu quả", hot: false },
 ];

@@ -15,12 +15,23 @@ import {
   UtensilsCrossed,
   Ticket,
   PiggyBank,
+  Waves,
+  Lightbulb,
   Building2,
   Route,
   HeartHandshake,
   type LucideIcon,
 } from "lucide-react";
-import { CHALLENGES, OVERVIEW, DAYS, COSTS, CONCLUSIONS, MEMBERS } from "@/lib/deck";
+import {
+  CHALLENGES,
+  OVERVIEW,
+  DAYS,
+  COSTS,
+  COST_INCLUDES,
+  COST_NOTE,
+  CONCLUSIONS,
+  MEMBERS,
+} from "@/lib/deck";
 import { Chip, Bar } from "./slides-a";
 
 const CH_ICONS: Record<string, LucideIcon> = {
@@ -160,10 +171,25 @@ export function SlideOverview() {
                   <p className="display mt-1 leading-tight text-[clamp(1rem,1.9vw,1.6rem)] text-[#0a3d62]">
                     {o.v}
                   </p>
+                  {o.d && (
+                    <p className="mt-1 text-[clamp(0.68rem,1vw,0.9rem)] font-medium text-[#56718a]">
+                      {o.d}
+                    </p>
+                  )}
                 </div>
               </div>
             );
           })}
+        </div>
+        <div
+          className="rv mt-[clamp(0.8rem,2vh,1.6rem)] flex items-center gap-4 rounded-2xl bg-[#2ec4b6]/10 px-[clamp(1rem,2vw,1.6rem)] py-[clamp(0.7rem,1.6vh,1.2rem)] ring-1 ring-[#2ec4b6]/45"
+          style={{ ["--d" as string]: "0.52s" }}
+        >
+          <Lightbulb className="h-5 w-5 shrink-0 text-[#149d92]" strokeWidth={2.2} />
+          <p className="text-[clamp(0.78rem,1.2vw,1.02rem)] font-semibold leading-snug text-[#0a3d62]">
+            Thiết kế riêng cho học sinh – sinh viên & gia đình trẻ: đi đoàn 20–30 khách nên giá tốt,
+            lịch trình gọn, cân bằng trải nghiệm – chi phí.
+          </p>
         </div>
       </div>
     </section>
@@ -235,6 +261,7 @@ const COST_ICONS: Record<string, LucideIcon> = {
   hotel: Hotel,
   food: UtensilsCrossed,
   ticket: Ticket,
+  waves: Waves,
   save: PiggyBank,
 };
 
@@ -281,10 +308,13 @@ export function SlideCosts() {
             <p className="text-[clamp(0.65rem,1vw,0.9rem)] font-bold uppercase tracking-[0.22em] text-white/80">
               Tổng chi phí dự kiến
             </p>
-            <p className="display grad-mint mt-3 text-[clamp(2.2rem,5vw,4.2rem)]">2.500.000đ</p>
+            <p className="display grad-mint mt-3 text-[clamp(1.9rem,4.4vw,3.6rem)]">4.200.000đ</p>
             <div className="bar-accent mt-4 h-1.5 w-14 bg-[#2ec4b6]" />
-            <p className="mt-4 max-w-[18rem] text-[clamp(0.7rem,1.05vw,1rem)] font-medium text-white/85">
-              Mức phí phù hợp nhóm học sinh — sinh viên
+            <p className="mt-4 max-w-[22rem] text-[clamp(0.68rem,0.95vw,0.85rem)] font-bold uppercase tracking-[0.16em] text-[#4de3d6]">
+              Giá đã bao gồm
+            </p>
+            <p className="mt-2 max-w-[22rem] text-[clamp(0.68rem,1vw,0.95rem)] font-medium leading-relaxed text-white/85">
+              {COST_INCLUDES}
             </p>
           </div>
         </div>
@@ -292,7 +322,7 @@ export function SlideCosts() {
           className="rv mt-[clamp(0.6rem,1.6vh,1.2rem)] text-[clamp(0.7rem,0.95vw,0.85rem)] font-medium text-[#56718a]"
           style={{ ["--d" as string]: "0.5s" }}
         >
-          Số liệu là dự toán tham khảo của nhóm
+          {COST_NOTE}
         </p>
       </div>
     </section>

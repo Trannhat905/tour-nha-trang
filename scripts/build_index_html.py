@@ -139,9 +139,8 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 .dotp.on{{background:#2EC4B6;transform:scale(1.45);box-shadow:0 0 0 3px rgba(255,255,255,.65)}}
 #count{{position:fixed;left:18px;bottom:16px;z-index:60;font-size:13px;font-weight:700;letter-spacing:2px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}}
 #count b{{color:#149D92}}
-#hint{{position:fixed;right:38px;bottom:16px;z-index:60;font-size:12px;font-weight:600;letter-spacing:1.5px;color:#0A3D62;background:rgba(255,255,255,.78);backdrop-filter:blur(6px);border:1px solid rgba(10,61,98,.12);border-radius:999px;padding:8px 16px}}
-@media (max-width:640px){{#hint{{display:none}}#dots{{right:8px}}}}
-@media print{{#bar,#dots,#count,#hint{{display:none}}html,body{{background:#fff}}.deck{{height:auto;overflow:visible;scroll-snap-type:none}}.stage{{height:auto;padding:0;page-break-after:always}}.stage .slide{{transform:none;box-shadow:none}}.jl,.jf{{opacity:1!important;transform:none!important;animation:none!important}}}}
+@media (max-width:640px){{#dots{{right:8px}}}}
+@media print{{#bar,#dots,#count{{display:none}}html,body{{background:#fff}}.deck{{height:auto;overflow:visible;scroll-snap-type:none}}.stage{{height:auto;padding:0;page-break-after:always}}.stage .slide{{transform:none;box-shadow:none}}.jl,.jf{{opacity:1!important;transform:none!important;animation:none!important}}}}
 </style>
 </head>
 <body>
@@ -153,7 +152,6 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 {dots}
 </nav>
 <div id="count"><b>01</b> / 15</div>
-<div id="hint">↑ ↓ CHUYỂN SLIDE · F TOÀN MÀN HÌNH</div>
 <script>
 (function () {{
   var deck = document.getElementById('deck');
