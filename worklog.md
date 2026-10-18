@@ -155,3 +155,15 @@ Work Log:
 
 Stage Summary:
 - Bìa mang nhãn NHÓM 4; slide Tiềm năng dùng bộ số dự báo 2026 (23,7 triệu / hơn 9,4 triệu / hơn 80.200 tỷ đồng) kèm khối Lưu ý dự báo
+
+---
+Task ID: 10
+Agent: main-agent
+Task: Hỗ trợ lỗi "Download workspace failed: Failed to fetch" khi user tải workspace
+
+Work Log:
+- Chẩn đoán: workspace 1.5GB (node_modules 1.2GB + .next 175MB) → nén/tải toàn workspace bị fail
+- Tạo gói nhẹ download/Tour-Nha-Trang-tong-hop.zip (4.6MB, 103 files): src/, public/, prisma/, db/, các file config gốc (package.json, bun.lock, next.config.ts, tsconfig.json, postcss.config.mjs, tailwind.config.ts, components.json, eslint.config.mjs, next-env.d.ts) + Tour-du-lich-Nha-Trang.pptx + download/slides/ (15 HTML + global.css + brief)
+
+Stage Summary:
+- User có thể tải trực tiếp file zip nhẹ từ thư mục download thay vì "Download workspace"
