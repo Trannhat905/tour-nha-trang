@@ -195,3 +195,19 @@ Work Log:
 
 Stage Summary:
 - index.html có hiệu ứng nhảy chữ per-character khi chuyển slide + fade-up stagger cho đoạn văn, replay mỗi lần hiện slide; file vẫn 1 file duy nhất 51KB
+
+---
+Task ID: 13
+Agent: main-agent
+Task: Push toàn bộ dự án lên GitHub theo yêu cầu user
+
+Work Log:
+- Kiểm tra môi trường: git 2.47.3 OK, repo local tồn tại (branch main, 184 files, node_modules/.next không bị track); KHÔNG có gh CLI, KHÔNG có token/credentials; mạng tới github.com hoạt động (ls-remote OK)
+- Dọn repo trước khi push: git rm --cached 45MB ảnh QA (scripts/*.png, idx_*.png) + .zscripts + upload/; thêm vào .gitignore; .env chỉ chứa DATABASE_URL file local (an toàn, giữ lại)
+- Viết README.md gốc (giới thiệu dự án, 3 phiên bản web/index.html/PPTX, hướng dẫn chạy, cấu trúc thư mục, số liệu 2026)
+- Commit d1b5263 "Bài thuyết trình Nhóm 4 — Tour du lịch Nha Trang" (bao gồm hiệu ứng nhảy chữ Task 12); working tree sạch
+- Hỏi user qua AskUserQuestion: chọn "Gửi token" + Public + tên repo tour-nha-trang, NHƯNG chưa nhận được token thực tế
+- Viết sẵn scripts/github_push.sh: tạo repo qua GitHub REST API (POST /user/repos) + push main qua HTTPS x-access-token + tự xoá token khỏi .git/config sau push
+
+Stage Summary:
+- Repo local đã sẵn sàng 100% (commit d1b5263 + README + repo sạch 9.5MB download); CHỜ user dán Personal Access Token vào chat để chạy scripts/github_push.sh <token> tour-nha-trang public
