@@ -244,3 +244,17 @@ Work Log:
 
 Stage Summary:
 - Toàn bộ ảnh đã tự host: Next.js/Vercel phục vụ từ /images/*, index.html nhúng base64 100% tự chứa — không còn phụ thuộc CDN z.ai
+
+---
+Task ID: 15
+Agent: main-agent
+Task: Đổi favicon tab trình duyệt từ logo z.ai sang logo Vercel (ảnh mẫu user gửi: tròn đen + tam giác trắng)
+
+Work Log:
+- Hiểu đúng ý user: trước đó nhầm "đổi ảnh z.ai sang vercel" = chuyển host ảnh; thực chất user muốn đổi ICON TAB (favicon) — logo.svg cũ là logo z.ai có animation breathe
+- Tạo public/favicon.svg: circle đen r=32 + path tam giác đều trắng đỉnh hướng lên (theo đúng ảnh mẫu upload)
+- layout.tsx: icons.icon "/logo.svg" → "/favicon.svg" (URL mới giúp né cache favicon cũ của trình duyệt); grep xác nhận chỉ 1 nơi tham chiếu
+- Verify agent-browser: render SVG khớp ảnh mẫu; commit 203e681 + push GitHub → Vercel auto-redeploy
+
+Stage Summary:
+- Tab trình duyệt hiển thị logo Vercel (tròn đen + tam giác trắng ▲) sau khi Vercel deploy xong
