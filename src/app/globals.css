@@ -193,7 +193,8 @@ button, input, select, textarea {
 /* ---------- typography helpers ---------- */
 .display {
   font-weight: 900;
-  line-height: 0.95;
+  /* 1.15: dấu chồng (Ể, Ự, Ạ…) của tiếng Việt cần trần cao hơn để không đè dòng kế bên */
+  line-height: 1.15;
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }

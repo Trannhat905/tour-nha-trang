@@ -61,7 +61,7 @@ export function SlideChallenges() {
                 </span>
                 <div className="min-w-0">
                   <p className="display text-[clamp(0.95rem,1.9vw,1.6rem)] text-[#0a3d62]">{c.t}</p>
-                  <p className="mt-1 text-[clamp(0.68rem,1.05vw,1rem)] font-medium text-[#56718a]">
+                  <p className="mt-1 text-[clamp(0.72rem,1.05vw,1rem)] font-medium text-[#56718a]">
                     {c.d}
                   </p>
                 </div>
@@ -154,10 +154,10 @@ export function SlideOverview() {
                   <Ic className="h-[45%] w-[45%]" strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[clamp(0.62rem,0.95vw,0.85rem)] font-bold uppercase tracking-[0.16em] text-[#56718a]">
+                  <p className="text-[clamp(0.68rem,0.95vw,0.85rem)] font-bold uppercase tracking-[0.16em] text-[#56718a]">
                     {o.l}
                   </p>
-                  <p className="display mt-1 truncate text-[clamp(1rem,2vw,1.7rem)] text-[#0a3d62]">
+                  <p className="display mt-1 leading-tight text-[clamp(1rem,1.9vw,1.6rem)] text-[#0a3d62]">
                     {o.v}
                   </p>
                 </div>
@@ -186,7 +186,7 @@ export function SlideItinerary() {
           Hành trình 3 ngày 2 đêm
         </h2>
         <Bar className="mt-6 w-24" />
-        <div className="mt-[clamp(0.7rem,2.6vh,2.2rem)] grid grid-cols-1 gap-[clamp(0.55rem,1.6vw,1.5rem)] md:grid-cols-3">
+        <div className="mt-[clamp(0.5rem,2.6vh,2.2rem)] grid grid-cols-1 gap-[clamp(0.45rem,1.6vw,1.5rem)] md:grid-cols-3">
           {DAYS.map((d, i) => (
             <div
               key={d.tag}
@@ -194,7 +194,7 @@ export function SlideItinerary() {
               style={{ ["--d" as string]: `${0.14 + i * 0.12}s` }}
               data-cursor
             >
-              <div className="relative h-16 w-full overflow-hidden md:h-[clamp(6rem,14vh,9rem)]">
+              <div className="relative h-14 w-full overflow-hidden md:h-[clamp(6rem,14vh,9rem)]">
                 <Image
                   src={d.img}
                   alt={d.alt}
@@ -212,7 +212,7 @@ export function SlideItinerary() {
                   {d.items.map((it) => (
                     <li
                       key={it}
-                      className="flex items-start gap-1.5 text-[clamp(0.62rem,1.05vw,0.98rem)] font-semibold leading-snug text-[#0a3d62]/90"
+                      className="flex items-start gap-1.5 text-[clamp(0.72rem,1.05vw,0.98rem)] font-semibold leading-snug text-[#0a3d62]/90"
                     >
                       <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#149d92] md:h-4 md:w-4" strokeWidth={2.6} />
                       {it}
@@ -278,18 +278,18 @@ export function SlideCosts() {
             style={{ ["--d" as string]: "0.4s" }}
             data-cursor
           >
-            <p className="text-[clamp(0.65rem,1vw,0.9rem)] font-bold uppercase tracking-[0.22em] text-white/70">
+            <p className="text-[clamp(0.65rem,1vw,0.9rem)] font-bold uppercase tracking-[0.22em] text-white/80">
               Tổng chi phí dự kiến
             </p>
             <p className="display grad-mint mt-3 text-[clamp(2.2rem,5vw,4.2rem)]">2.500.000đ</p>
             <div className="bar-accent mt-4 h-1.5 w-14 bg-[#2ec4b6]" />
-            <p className="mt-4 max-w-[18rem] text-[clamp(0.7rem,1.05vw,1rem)] font-medium text-white/75">
+            <p className="mt-4 max-w-[18rem] text-[clamp(0.7rem,1.05vw,1rem)] font-medium text-white/85">
               Mức phí phù hợp nhóm học sinh — sinh viên
             </p>
           </div>
         </div>
         <p
-          className="rv mt-[clamp(0.6rem,1.6vh,1.2rem)] text-[clamp(0.62rem,0.95vw,0.85rem)] font-medium text-[#56718a]/80"
+          className="rv mt-[clamp(0.6rem,1.6vh,1.2rem)] text-[clamp(0.7rem,0.95vw,0.85rem)] font-medium text-[#56718a]"
           style={{ ["--d" as string]: "0.5s" }}
         >
           Số liệu là dự toán tham khảo của nhóm
@@ -387,7 +387,7 @@ export function SlideThanks() {
           Rất mong nhận được câu hỏi và góp ý
         </p>
         <p
-          className="rv mt-10 text-[clamp(0.72rem,1.05vw,1rem)] font-semibold tracking-wide text-white/70"
+          className="rv mt-10 text-[clamp(0.72rem,1.05vw,1rem)] font-semibold tracking-wide text-white/85"
           style={{ ["--d" as string]: "0.4s" }}
         >
           Nhóm thực hiện: {MEMBERS.join(" · ")}

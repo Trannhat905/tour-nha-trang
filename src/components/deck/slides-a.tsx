@@ -156,7 +156,7 @@ export function SlideMembers() {
               <span className="mt-4 whitespace-nowrap text-[clamp(1rem,1.9vw,1.7rem)] font-extrabold text-[#0a3d62]">
                 {m}
               </span>
-              <span className="mt-1 text-[clamp(0.6rem,0.9vw,0.85rem)] font-medium text-[#56718a]">
+              <span className="mt-1 text-[clamp(0.68rem,0.9vw,0.85rem)] font-medium text-[#56718a]">
                 Thành viên nhóm
               </span>
             </div>
@@ -191,10 +191,10 @@ export function SlideAgenda() {
                 {a.n}
               </span>
               <div className="min-w-0">
-                <p className="display truncate text-[clamp(0.95rem,2.1vw,1.9rem)] text-[#0a3d62]">
+                <p className="display text-[clamp(0.95rem,2.1vw,1.9rem)] text-[#0a3d62]">
                   {a.t}
                 </p>
-                <p className="mt-0.5 truncate text-[clamp(0.65rem,1vw,0.95rem)] font-medium text-[#56718a]">
+                <p className="mt-0.5 text-[clamp(0.65rem,1vw,0.95rem)] font-medium leading-snug text-[#56718a]">
                   {a.d}
                 </p>
               </div>
@@ -233,7 +233,7 @@ export function SlideDivider1() {
         </h2>
         <Bar className="mt-7 w-28" />
         <p
-          className="rv mt-6 max-w-xl text-[clamp(0.95rem,1.7vw,1.5rem)] font-medium leading-relaxed text-white/85"
+          className="rv mt-6 max-w-2xl text-[clamp(0.95rem,1.7vw,1.5rem)] font-medium leading-relaxed text-white/85"
           style={{ ["--d" as string]: "0.25s" }}
         >
           Giới thiệu điểm đến Nha Trang và lý do chọn đề tài
@@ -259,7 +259,7 @@ export function SlideIntro() {
             className="display rv mt-5 text-[clamp(1.8rem,3.8vw,3.4rem)] text-[#0a3d62]"
             style={{ ["--d" as string]: "0.08s" }}
           >
-            Nha Trang — <span className="grad-mint">viên ngọc xanh</span> của biển Đông
+            Nha Trang — <span className="text-[#149d92]">viên ngọc xanh</span> của biển Đông
           </h2>
           <Bar className="mt-6 w-24" />
           <ul className="mt-[clamp(1.2rem,3vh,2.4rem)] flex flex-col gap-[clamp(0.7rem,1.8vh,1.3rem)]">
@@ -432,7 +432,7 @@ export function SlideStats() {
           ))}
         </div>
         <p
-          className="rv mt-[clamp(0.8rem,2vh,1.6rem)] text-[clamp(0.62rem,0.95vw,0.85rem)] font-medium text-[#56718a]/80"
+          className="rv mt-[clamp(0.8rem,2vh,1.6rem)] text-[clamp(0.7rem,0.95vw,0.85rem)] font-medium text-[#56718a]"
           style={{ ["--d" as string]: "0.45s" }}
         >
           Nguồn: Hệ thống thống kê du lịch Việt Nam — 2025

@@ -123,3 +123,20 @@ Work Log:
 
 Stage Summary:
 - Bìa không còn dòng tên; slide 2 ghi vòng chữ K/M/A/T bình thường đồng bộ
+
+---
+Task ID: 8
+Agent: main-agent
+Task: Rà soát & fix TOÀN BỘ lỗi font chữ không rõ / mất dấu tiếng Việt (audit 15 slide)
+
+Work Log:
+- Audit: chụp 15 slide desktop + crop độ phân giải gốc (deviceScaleFactor=2, scripts/font_audit.js) + kiểm tra font glyph coverage (document.fonts.check toàn bộ bảng chữ HOA tiếng Việt → Be Vietnam Pro đủ 100%)
+- Chẩn đoán 3 gốc rễ làm mất/cắt dấu: (1) .display line-height 0.95 → dấu Ự/Ạ/Ị đè lên dòng kế (slide 5, 7, 8); (2) class truncate (overflow:hidden) cắt mất phần dấu vượt line-box → "3 NGÀY 2 ĐÊM" thành "3 NGAY 2 DEM", "NHÓM BẠN" thành "NHÓM …" (slide 11); (3) grad-mint (background-clip:text) ăn mất chấm dưới của "Ọ" trong "NGỌC" (slide 5)
+- Fix: .display line-height 0.95 → 1.15; bỏ truncate ở slide 3 (agenda) & slide 11 (thông tin tour, giảm max 1.7→1.6rem + leading-tight); slide 5 đổi span grad-mint → solid #149d92; divider 1 tagline max-w-xl→max-w-2xl (chữ mồ côi "tài")
+- Chữ nhỏ/mờ tăng rõ: fs-hint 0.68→0.75rem bỏ /70; dot-nav label 0.62→0.7rem; counter opacity 50→70; nguồn số liệu & ghi chú chi phí bỏ /80 + min 0.7rem; nhờ slide 15 footer white/70→/85; card chi phí white/70→80, white/75→85; item lịch trình min 0.62→0.72rem; label tổng quan min 0.62→0.68rem; desc thách thức min 0.68→0.72rem; sub thành viên min 0.6→0.68rem
+- Mobile slide 12 chật đáy → nén ảnh h-16→h-14, gap 0.55→0.45rem, mt grid 0.7→0.5rem
+- ESLint: thêm ignores scripts/** download/** upload/** (script QA dùng require)
+- Verify: re-crop 7 vị trí + full-page slide 5/7/11 + mobile 3/12 — dấu đủ 100%, không tràn; lint sạch
+
+Stage Summary:
+- Toàn bộ 15 slide: chữ hoa tiếng Việt đủ dấu, không cắt, không dính, không mờ; đã bàn giao lại web

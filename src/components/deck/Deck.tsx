@@ -240,7 +240,7 @@ export default function Deck() {
             className="group flex items-center gap-2.5"
           >
             <span
-              className={`pointer-events-none rounded-full px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.14em] opacity-0 transition-all duration-300 group-hover:opacity-100 ${
+              className={`pointer-events-none rounded-full px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.14em] opacity-0 transition-all duration-300 group-hover:opacity-100 ${
                 darkSlide ? "bg-white/15 text-white" : "bg-[#0a3d62]/90 text-white"
               }`}
             >
@@ -267,13 +267,13 @@ export default function Deck() {
         <span className="text-[clamp(1rem,1.6vw,1.5rem)]">
           {String(active + 1).padStart(2, "0")}
         </span>
-        <span className="mx-1.5 text-[0.7em] opacity-50">/ {SLIDES.length}</span>
+        <span className="mx-1.5 text-[0.7em] opacity-70">/ {SLIDES.length}</span>
       </div>
 
       {/* keyboard hint */}
       <div
-        className={`fs-hint fixed bottom-5 right-[max(1.25rem,4.5vw)] z-[85] hidden text-[0.68rem] font-semibold uppercase tracking-[0.16em] lg:block ${
-          darkSlide ? "text-white/50" : "text-[#56718a]/70"
+        className={`fs-hint fixed bottom-5 right-[max(1.25rem,4.5vw)] z-[85] hidden text-[0.75rem] font-semibold uppercase tracking-[0.16em] lg:block ${
+          darkSlide ? "text-white/75" : "text-[#56718a]"
         }`}
       >
         ↑ ↓ điều hướng · F / F11 toàn màn hình
