@@ -265,5 +265,29 @@ html,body{{margin:0;padding:0;height:100%;background:#E9F1F6;font-family:'Be Vie
 </html>
 """
 
+# ---------- nhúng ảnh z-cdn thành base64: file độc lập tuyệt đối, không phụ thuộc CDN ----------
+import base64, urllib.request
+
+def inline_zcdn_images(html: str) -> str:
+    cache = {}
+    def repl(m):
+        url = m.group(1)
+        if url not in cache:
+            try:
+                with urllib.request.urlopen(url, timeout=30) as r:
+                    data = r.read()
+                mime = "image/png" if url.lower().endswith(".png") else "image/jpeg"
+                cache[url] = "data:%s;base64,%s" % (mime, base64.b64encode(data).decode())
+                print("  inline: %s (%.0f KB)" % (url.rsplit("/", 1)[-1], len(data) / 1024))
+            except Exception as ex:
+                print("  WARN giu nguyen URL (loi tai): %s — %s" % (url, ex))
+                cache[url] = url
+        return 'src="' + cache[url] + '"'
+    return re.sub(r'src="(https://z-cdn\.chatglm\.cn/image-search-mcp/[^"]+)"', repl, html)
+
+page = inline_zcdn_images(page)
+leftover = len(re.findall(r'z-cdn\.chatglm\.cn/image-search', page))
+assert leftover == 0, f"van con {leftover} anh chua nhung duoc"
+
 OUT.write_text(page, encoding="utf-8")
 print(f"OK → {OUT} ({OUT.stat().st_size/1024:.0f} KB), slides: {len(bodies)}")

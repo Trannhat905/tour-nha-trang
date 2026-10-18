@@ -1,9 +1,9 @@
 export const IMG = {
-  hero: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/28a28755af7e.jpg",
-  panorama: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5fee4024041a.jpg",
-  ponagar: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5de2c823e280.jpeg",
-  snorkel: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/23bce2b858b4.jpg",
-  island: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/91c437c1ca17.png",
+  hero: "/images/beach-aerial.jpg",
+  panorama: "/images/city-panorama.jpg",
+  ponagar: "/images/ponagar.jpg",
+  snorkel: "/images/snorkeling.jpg",
+  island: "/images/island-boat.png",
 };
 
 export const MEMBERS = ["Kỳ Anh", "Minh Nhật", "Anh Thư", "Thanh Nguyên"];
